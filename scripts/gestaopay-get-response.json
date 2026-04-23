@@ -1,0 +1,69 @@
+{
+  "data": {
+    "id": "3e425882a9da4c51917a521f47d77708",
+    "created_at": "14/04/2026 05:58:34",
+    "updated_at": "2026-04-14T05:58:34.9201893",
+    "company_id": "02790bf8dbe7402ba17f668daa76c0ff",
+    "acquirer_id": "5",
+    "external_id": "6692036",
+    "paid_at": "0001-01-01T00:00:00",
+    "amount": 1,
+    "refunded_amount": null,
+    "installments": 0,
+    "payment_method": "pix",
+    "status": "PENDING",
+    "anticipation_status": null,
+    "postback_url": "https://webhook.site/test-diario-biblico",
+    "metadata": {
+      "provider_name": "Saints Label",
+      "test": true,
+      "purpose": "API field discovery"
+    },
+    "traceable": true,
+    "secure_id": null,
+    "secure_url": null,
+    "ip": null,
+    "customer": {
+      "id": "78d5460876764e61a8a6a4b23bff1e00",
+      "name": "Teste API Diario Biblico",
+      "email": "teste@teste.com",
+      "document": {
+        "number": "12345678909",
+        "type": "cpf"
+      },
+      "phone": "11999999999"
+    },
+    "card": null,
+    "boleto": null,
+    "pix": {
+      "qr_code": "00020101021226800014br.gov.bcb.pix2558qrcode.mkip.com.br/v1/747287ac-cec8-4049-b008-7c61b9453c745204000053039865802BR5916VOXPAGPAGAMENTOS6008SAOPAULO62070503***630417E8",
+      "url": null,
+      "expiration_date": "0001-01-01T00:00:00",
+      "e2_e": null
+    },
+    "shipping": null,
+    "refund": null,
+    "refused_reason": null,
+    "items": [
+      {
+        "title": "Teste - Diário Bíblico",
+        "unit_price": 1,
+        "quantity": 1,
+        "tangible": true,
+        "external_ref": null
+      }
+    ],
+    "fee_details": {
+      "id": "5be5c606c2b7479c863be0f4a8c19d06",
+      "amount": 1,
+      "splits": null,
+      "total_fee": 2.09,
+      "total_amount": -1.09
+    },
+    "delivery": null
+  },
+  "success": true,
+  "return_message_type": 200,
+  "error_messages": [],
+  "inner_exception": null
+}

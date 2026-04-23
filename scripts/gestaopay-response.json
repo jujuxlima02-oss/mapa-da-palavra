@@ -1,0 +1,70 @@
+{
+  "timestamp": "2026-04-14T08:58:34.369Z",
+  "request": {
+    "url": "https://api.gestaopayments.com/v1/payment-transaction/create",
+    "method": "POST",
+    "payload": {
+      "amount": 100,
+      "payment_method": "pix",
+      "postback_url": "https://webhook.site/test-diario-biblico",
+      "customer": {
+        "name": "Teste API Diario Biblico",
+        "email": "teste@teste.com",
+        "phone": "11999999999",
+        "document": {
+          "number": "12345678909",
+          "type": "cpf"
+        }
+      },
+      "items": [
+        {
+          "title": "Teste - Diário Bíblico",
+          "unit_price": 100,
+          "quantity": 1,
+          "tangible": true
+        }
+      ],
+      "pix": {
+        "expires_in_days": 1
+      },
+      "metadata": {
+        "provider_name": "Saints Label",
+        "test": true,
+        "purpose": "API field discovery"
+      }
+    }
+  },
+  "response": {
+    "statusCode": 201,
+    "headers": {
+      "content-type": "application/json; charset=utf-8",
+      "date": "Tue, 14 Apr 2026 08:58:34 GMT",
+      "request-context": "appId=cid-v1:ac7cc3c3-2675-472e-b3ef-a598d5c2dc83",
+      "server": "Kestrel",
+      "strict-transport-security": "max-age=2592000",
+      "transfer-encoding": "chunked"
+    },
+    "body": {
+      "data": {
+        "id": "3e425882a9da4c51917a521f47d77708",
+        "amount": 100,
+        "installments": 0,
+        "payment_method": "pix",
+        "status": "PENDING",
+        "postback_url": "https://webhook.site/test-diario-biblico",
+        "card": null,
+        "boleto": null,
+        "pix": {
+          "qr_code": "00020101021226800014br.gov.bcb.pix2558qrcode.mkip.com.br/v1/747287ac-cec8-4049-b008-7c61b9453c745204000053039865802BR5916VOXPAGPAGAMENTOS6008SAOPAULO62070503***630417E8",
+          "url": null,
+          "expiration_date": "0001-01-01T00:00:00",
+          "e2_e": null
+        }
+      },
+      "success": true,
+      "return_message_type": 201,
+      "error_messages": [],
+      "inner_exception": null
+    }
+  }
+}

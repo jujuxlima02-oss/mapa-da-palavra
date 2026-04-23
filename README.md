@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Mapa da Palavra
 
-## Getting Started
+Aplicação Next.js 16 para vender o produto físico `Mapa da Palavra`, um guia visual dos 66 livros da Bíblia, por meio de duas landing pages, checkout com PIX via GestãoPay e persistência de pedidos em PostgreSQL com Prisma.
 
-First, run the development server:
+## Nome do produto
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Nome principal: `Mapa da Palavra`
+- Descritor padronizado: `Guia Visual dos 66 Livros da Bíblia`
+- Termo legado encontrado no repositório: `Diário Bíblico`
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estado atual
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Landing evergreen em `/`
+- Landing sazonal em `/dia-das-maes`
+- Checkout com coleta de endereço completo
+- Busca de CEP via ViaCEP no checkout
+- Geração de PIX via GestãoPay
+- Webhook + polling para atualização de status
+- Página de confirmação de pedido
+- Tracking com Google Analytics 4
+- Prova social dinâmica local controlada por feature flag
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Stack atual
 
-## Learn More
+| Camada | Tecnologia |
+| --- | --- |
+| Frontend | Next.js `16.2.3`, React `19.2.4`, Tailwind CSS `4` |
+| Backend | Route Handlers do App Router |
+| Banco | PostgreSQL com Prisma `7.7.0` |
+| Gateway | GestãoPay |
+| Analytics | Google Analytics 4 |
+| Infra | Projeto preparado para Vercel |
 
-To learn more about Next.js, take a look at the following resources:
+## Rodando localmente
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Instale as dependências com `npm install`
+2. Crie o arquivo `.env.local` a partir de `.env.example`
+3. Preencha as variáveis obrigatórias
+4. Rode `npm run dev`
+5. Acesse `http://localhost:3000`
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Variáveis de ambiente
 
-## Deploy on Vercel
+| Variável | Uso |
+| --- | --- |
+| `DATABASE_URL` | Conexão PostgreSQL |
+| `GESTAOPAY_PUBLIC_KEY` | Chave pública da GestãoPay |
+| `GESTAOPAY_SECRET_KEY` | Chave secreta da GestãoPay |
+| `GESTAOPAY_API_URL` | Base URL da API GestãoPay |
+| `BASE_URL` | URL base server-side para webhook e links absolutos |
+| `NEXT_PUBLIC_BASE_URL` | URL pública do app |
+| `NEXT_PUBLIC_GA_MEASUREMENT_ID` | ID do GA4 |
+| `NEXT_PUBLIC_PRODUCT_PRICE_CENTS` | Preço do produto em centavos |
+| `NEXT_PUBLIC_PRODUCT_NAME` | Nome exibido atualmente no código |
+| `SEASONAL_CAMPAIGN_END_DATE` | Data-limite da rota sazonal |
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Scripts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Script | Descrição |
+| --- | --- |
+| `npm run dev` | Sobe o ambiente local |
+| `npm run build` | Gera o build de produção |
+| `npm run start` | Inicia o build gerado |
+| `npm run lint` | Executa o ESLint |
+
+## Rotas principais
+
+| Rota | Finalidade |
+| --- | --- |
+| `/` | Landing evergreen |
+| `/dia-das-maes` | Landing sazonal |
+| `/checkout?offer=...` | Checkout |
+| `/checkout/pix/[orderId]` | Pagamento PIX |
+| `/checkout/confirmacao/[orderId]` | Confirmação |
+| `POST /api/checkout` | Criação do pedido e do PIX |
+| `GET /api/order/[orderId]` | Polling de status |
+| `POST /api/webhooks/gestaopay` | Webhook da GestãoPay |
+
+## Documentação principal
+
+- `README.md`: visão geral do projeto
+- `docs/ai-context.md`: contexto rápido para agentes
+- `docs/requirements.md`: escopo e regras atuais do produto
+- `docs/design.md`: arquitetura técnica implementada
+- `docs/gestaopay-normalizado.md`: fonte técnica canônica da GestãoPay
+- `docs/copy-landing-pages.md`: inventário da copy atualmente implementada
+- `docs/tasks.md`: histórico técnico do MVP
+- `TASKS.md`: backlog ativo de conteúdo, UX e alinhamento
+
+## Gaps conhecidos
+
+- O naming ainda está misto no código entre `Mapa da Palavra` e `Diário Bíblico - Mapa da Palavra`
+- A copy implementada nas landing pages diverge do plano estratégico mais recente
+- O hero ainda usa placeholder visual, não fotos reais do produto
+- A FAQ ainda contém placeholders de prazo de entrega
+- A landing de Dia das Mães promete bônus digital, mas o fluxo transacional implementado só materializa o brinde físico
+- Existem links institucionais ainda não implementados no app, como `/termos`, `/privacidade`, `/garantia` e `/politica-de-garantia`

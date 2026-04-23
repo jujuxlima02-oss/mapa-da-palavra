@@ -1,0 +1,53 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Order {
+  id              String    @id @default(cuid())
+
+  // Dados do comprador
+  customerName    String
+  customerEmail   String
+  customerPhone   String
+  customerCpf     String
+  // Endereço de Entrega
+  cep             String
+  rua             String
+  numero          String
+  complemento     String?
+  cidade          String
+  estado          String
+
+  // Dados do pedido
+  productName     String
+  amountCents     Int       // Valor em centavos (ex: 3990 = R$ 39,90)
+  offerSource     String    // "evergreen" | "dia-das-maes"
+  shippingMode    String    @default("free")
+  shippingPrice   Int       @default(0)
+
+  // Status
+  status          String    @default("PENDING") // PENDING, PAID, EXPIRED, ERROR
+
+  // GestãoPay
+  gatewayId       String?   // ID da transação na GestãoPay (data.id)
+  pixCopyPaste    String?   // Código copia-e-cola EMV (data.pix.qr_code)
+  pixQrCode       String?   // Mesmo valor do pixCopyPaste — usado para gerar QR Code no frontend
+  pixExpiresAt    DateTime? // Calculado: createdAt + expires_in_days
+
+  // Tracking
+  paidAt          DateTime?
+
+  // Timestamps
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  @@index([gatewayId])
+  @@index([status])
+}
