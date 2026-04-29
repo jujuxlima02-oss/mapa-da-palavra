@@ -51,12 +51,7 @@ export function Hero({
               <Button 
                 size="lg" 
                 className="w-full sm:w-auto mx-auto px-6 sm:px-6"
-                onClick={() => {
-                  analytics.ctaClick(offerSource, "hero_main");
-                  if (offerSource === "dia-das-maes") {
-                    analytics.trackEvent("mother_day_gift_cta_click", { offer_source: offerSource });
-                  }
-                }}
+                onClick={() => analytics.ctaClick(offerSource, "hero_main", buttonMainText)}
               >
                 {buttonMainText}
               </Button>

@@ -1,31 +1,41 @@
 /**
- * Camada de abstração do Google Analytics 4 — Mapa da Palavra
+ * Camada de abstração do Google Tag Manager — Mapa da Palavra
  * 
  * Centraliza todos os eventos de tracking do projeto.
  * Cada evento inclui `offer_source` quando relevante.
  */
 
-// Declarar gtag no window para TypeScript
+type AnalyticsValue = string | number | boolean | null | undefined;
+type AnalyticsParams = Record<string, AnalyticsValue>;
+type DataLayerPayload = { event: string } & AnalyticsParams;
+
 declare global {
   interface Window {
-    gtag?: (
-      command: "config" | "event" | "js" | "set",
-      targetId: string,
-      config?: Record<string, string | number | boolean | null | undefined>
-    ) => void;
+    dataLayer?: Array<Record<string, unknown>>;
   }
 }
 
 /**
- * Dispara um evento GA4 genérico
+ * Envia um payload seguro para o dataLayer do GTM.
+ */
+export function pushToDataLayer(payload: DataLayerPayload) {
+  if (typeof window === "undefined") return;
+
+  window.dataLayer = window.dataLayer || [];
+  window.dataLayer.push(payload);
+}
+
+/**
+ * Dispara um evento genérico via GTM
  */
 export function trackEvent(
   eventName: string,
-  params?: Record<string, string | number | boolean | null | undefined>
+  params?: AnalyticsParams
 ) {
-  if (typeof window !== "undefined" && window.gtag) {
-    window.gtag("event", eventName, params);
-  }
+  pushToDataLayer({
+    event: eventName,
+    ...(params ?? {}),
+  });
 }
 
 /**
@@ -36,10 +46,11 @@ export const analytics = {
   trackEvent,
 
   /** Clique no CTA da landing page */
-  ctaClick: (offerSource: string, position: string) =>
+  ctaClick: (offerSource: string, position: string, ctaText?: string) =>
     trackEvent("cta_click", {
       offer_source: offerSource,
       cta_position: position,
+      ...(ctaText !== undefined ? { cta_text: ctaText } : {}),
     }),
 
   /** Início do checkout (carregamento da página de checkout) */
