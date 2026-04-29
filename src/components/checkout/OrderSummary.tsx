@@ -1,7 +1,5 @@
 import Image from "next/image";
-import { BUNDLE_ITEM, PRODUCT, SHIPPING, formatCentsToBRL, type ShippingMode } from "@/lib/constants";
-import productThumb from "../../../imagens_produto/6-1.png";
-import bundleThumb from "../../../imagens_produto/Untitled_design_2_700x.png";
+import { PRODUCT, SHIPPING, formatCentsToBRL, type ShippingMode } from "@/lib/constants";
 
 interface OrderSummaryProps {
   offerSource: string;
@@ -21,7 +19,7 @@ export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
           <div className="relative mb-3 h-16 w-16 overflow-hidden rounded-lg bg-[var(--color-surface-2)] ring-1 ring-[var(--color-border)]">
             {/* TODO: substituir por asset final do Nanobanana — Briefing 10: Miniatura checkout // PLACEHOLDER */}
             <Image
-              src={productThumb}
+              src="/assets/imagem-produto.png"
               alt="Miniatura limpa do guia Mapa da Palavra"
               width={64}
               height={64}
@@ -39,26 +37,14 @@ export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
       </div>
 
       <div className="flex items-start justify-between gap-3">
-        <div className="space-y-1">
-          <div className="flex items-center gap-3">
-            <div className="relative h-12 w-12 overflow-hidden rounded-lg bg-[var(--color-surface-2)] ring-1 ring-[var(--color-border)]">
-              {/* TODO: substituir por asset final do Nanobanana — Briefing 9: Brinde Colar Coração de Jesus // PLACEHOLDER */}
-              <Image
-                src={bundleThumb}
-                alt="Thumbnail do colar Coração de Jesus"
-                width={48}
-                height={48}
-                sizes="48px"
-                style={{ aspectRatio: "1 / 1" }}
-                className="object-cover"
-              />
-            </div>
-            <div className="space-y-1">
-                <span className="inline-flex rounded bg-[var(--color-primary-highlight)] px-2 py-0.5 text-xs font-semibold text-[var(--color-success)]">
-                🎁 BRINDE
-              </span>
-              <p className="text-sm text-[var(--color-text)]">{BUNDLE_ITEM.name}</p>
-            </div>
+        <div className="space-y-2">
+          <span className="inline-flex rounded bg-[var(--color-primary-highlight)] px-2 py-0.5 text-xs font-semibold text-[var(--color-success)]">
+            🎁 BRINDES DIGITAIS
+          </span>
+          <div className="space-y-1 text-sm text-[var(--color-text)]">
+            <p>🃏 66 Cards de Versículos</p>
+            <p>📓 Diário de Fé</p>
+            <p>📅 Guia de Estudo em 30 Dias</p>
           </div>
         </div>
         <span className="pt-0.5 font-semibold text-[var(--color-success)]">Grátis</span>

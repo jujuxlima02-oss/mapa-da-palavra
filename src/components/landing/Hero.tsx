@@ -4,17 +4,14 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
 import { analytics } from "@/lib/analytics";
 import type { OfferSource } from "@/lib/constants";
-import evergreenHeroPlaceholder from "../../../imagens_produto/03_700x.jpg";
-import mothersHeroPlaceholder from "../../../imagens_produto/02_700x.jpg";
 
 interface HeroProps {
   headline: string;
   subheadline: string;
   buttonMainText: string;
-  buttonSecondaryText: string;
+  buttonSecondaryText?: string;
   supportLine: string;
   offerSource: OfferSource;
 }
@@ -23,12 +20,11 @@ export function Hero({
   headline,
   subheadline,
   buttonMainText,
-  buttonSecondaryText,
   supportLine,
   offerSource,
 }: HeroProps) {
   const heroImage =
-    offerSource === "dia-das-maes" ? mothersHeroPlaceholder : evergreenHeroPlaceholder;
+    offerSource === "dia-das-maes" ? "/assets/imagem_mapa_palavra5.png" : "/assets/imagem_mapa_palavra4.png";
   const headlineClasses =
     offerSource === "dia-das-maes"
       ? "text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl"
@@ -44,18 +40,17 @@ export function Hero({
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="max-w-2xl text-left">
-            <BookOpen className="h-12 w-12 text-[var(--color-accent)] mb-6" />
             <h1 className={`${headlineClasses} text-[var(--color-dark-text)]`}>
               {headline}
             </h1>
             <p className={`${subheadlineClasses} text-[var(--color-dark-text)]/80`}>
               {subheadline}
             </p>
-            <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <Link href={`/checkout?offer=${offerSource}`}>
+            <div className="mt-10 flex justify-center sm:justify-start">
+            <Link href={`/checkout?offer=${offerSource}`} className="w-full sm:w-auto">
               <Button 
                 size="lg" 
-                className="w-full px-6 sm:w-auto sm:px-6"
+                className="w-full sm:w-auto mx-auto px-6 sm:px-6"
                 onClick={() => {
                   analytics.ctaClick(offerSource, "hero_main");
                   if (offerSource === "dia-das-maes") {
@@ -66,31 +61,21 @@ export function Hero({
                 {buttonMainText}
               </Button>
             </Link>
-            <a href="#como-funciona" className="w-full sm:w-auto">
-              <Button 
-                variant="outline" 
-                size="lg" 
-                className="w-full px-6 border-[var(--color-border)] text-[var(--color-text)] hover:bg-[var(--color-surface)] sm:w-auto sm:px-6"
-                onClick={() => analytics.ctaClick(offerSource, "hero_secondary")}
-              >
-                {buttonSecondaryText}
-              </Button>
-            </a>
           </div>
             <p className="mt-6 text-sm text-[var(--color-dark-text)]/70 font-medium">
             {supportLine}
             </p>
           </div>
           <div className="lg:pl-6">
-            <div className="relative mx-auto w-full max-w-4xl overflow-hidden rounded-xl shadow-2xl bg-[var(--color-surface)] aspect-[16/9] lg:h-[480px] lg:aspect-auto">
+            <div className="relative mx-auto w-full h-auto max-w-4xl rounded-xl shadow-2xl bg-[var(--color-surface)]">
             {/* TODO: substituir por asset final do Nanobanana — Briefing 1: Hero evergreen // PLACEHOLDER */}
             <Image
               src={heroImage}
               alt="Guia físico Mapa da Palavra em uma mesa com Bíblia, café e luz natural, em composição editorial premium"
+              width={1024}
+              height={576}
               sizes="(max-width: 1024px) 100vw, 1024px"
-              fill
-              style={{ aspectRatio: "16 / 9" }}
-              className="object-cover object-center"
+              className="object-contain w-full h-auto"
               preload
             />
             {/* Decoração da borda */}

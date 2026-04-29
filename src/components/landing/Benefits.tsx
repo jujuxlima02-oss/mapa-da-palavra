@@ -8,7 +8,6 @@ import Link from "next/link";
 import { analytics } from "@/lib/analytics";
 import type { OfferSource } from "@/lib/constants";
 import benefitsMockup from "../../../imagens_produto/07_700x.jpg";
-import benefitsDetail from "../../../imagens_produto/1_228f667d-6496-4182-8141-1854c0afc88d.png";
 
 interface BenefitsProps {
   label: string;
@@ -73,18 +72,8 @@ export function Benefits({
                   style={{ aspectRatio: "4 / 5" }}
                   className="object-cover"
                 />
-                {/* TODO: substituir por asset final do Nanobanana — Briefing 2: Benefits evergreen // PLACEHOLDER */}
-                <Image
-                  src={benefitsDetail}
-                  alt="Detalhe de página interna do guia com conteúdo bíblico visual e marca-texto"
-                  width={220}
-                  height={280}
-                  style={{ aspectRatio: "11 / 14" }}
-                  className="absolute bottom-4 right-4 rounded-xl shadow-xl border border-[var(--color-surface)] rotate-[-6deg]"
-                />
                 <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-[var(--color-accent-highlight)] rounded-full opacity-50 blur-xl" />
                 <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-[var(--color-primary-highlight)] rounded-full opacity-50 blur-xl" />
-                <BookOpen className="absolute inset-0 m-auto h-16 w-16 text-[var(--color-text-faint)] opacity-40 pointer-events-none" />
               </div>
             </div>
           </div>
@@ -93,5 +82,3 @@ export function Benefits({
     </section>
   );
 }
-
-import { BookOpen } from "lucide-react";

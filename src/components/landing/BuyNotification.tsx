@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { featureFlags, type LandingPageKey } from "@/lib/featureFlags";
-import notificationThumb from "../../../imagens_produto/6-1.png";
 
 type Buyer = {
   name: string;
@@ -134,16 +133,16 @@ export function BuyNotification({ page }: BuyNotificationProps) {
     >
       <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface)]/95 px-3 py-2.5 text-[var(--color-text)] shadow-md shadow-black/10 backdrop-blur-sm">
         <div className="flex items-start gap-2.5">
-          <div className="relative mt-0.5 h-9 w-9 flex-none overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-accent-highlight)]/60">
+          <div className="relative mt-0.5 h-9 w-9 flex-none overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface)]">
             {/* TODO: substituir por asset final do Nanobanana — Briefing 4: Social proof evergreen // PLACEHOLDER */}
             <Image
-              src={notificationThumb}
+              src="/assets/imagem-produto.png"
               alt="Miniatura do guia Mapa da Palavra"
               width={36}
               height={36}
               sizes="36px"
               style={{ aspectRatio: "1 / 1" }}
-              className="object-cover"
+              className="object-contain"
             />
           </div>
           <div className="min-w-0">

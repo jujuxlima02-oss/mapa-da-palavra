@@ -1,13 +1,20 @@
 import React from "react";
+import Image from "next/image";
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
 import { PRODUCT } from "@/lib/constants";
 
 export function Footer() {
   return (
     <footer className="bg-[var(--color-dark-section)] py-12">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 flex flex-col items-center">
-        <BookOpen className="h-10 w-10 text-[var(--color-accent)] mb-6" />
+        <Image
+          src="/assets/logo-mapa-da-palavra-atualizada.jpg"
+          alt="Logo Mapa da Palavra"
+          width={240}
+          height={120}
+          sizes="240px"
+          className="mb-6 max-h-[72px] w-auto bg-[var(--color-dark-section)] sm:max-h-[100px]"
+        />
         <p className="text-[var(--color-dark-text)]/70 text-sm text-center max-w-md mb-6">
           {PRODUCT.name} — Uma marca registrada. Todos os direitos reservados {new Date().getFullYear()}.
         </p>

@@ -263,7 +263,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
           <Input
             label="Nome completo"
             name="name"
-            placeholder="Como seu nome aparece no documento"
+            placeholder="Digite seu nome completo"
             value={formData.name}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -275,7 +275,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
             label="E-mail"
             name="email"
             type="email"
-            placeholder="Para receber a confirmação"
+            placeholder="Digite seu melhor email"
             value={formData.email}
             onChange={handleChange}
             onBlur={handleBlur}
@@ -287,7 +287,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
               <label className="block text-sm font-medium text-[var(--color-text)] mb-1">Telefone (WhatsApp)</label>
               <div className={`flex items-center h-[48px] rounded-md border ${errors.phone ? 'border-[var(--color-error)] focus-within:shadow-[0_0_0_2px_rgba(139,42,42,0.2)]' : 'border-[var(--color-border)] focus-within:border-[var(--color-primary)] focus-within:shadow-[0_0_0_2px_rgba(139,94,42,0.2)]'} transition-all bg-[var(--color-surface-2)] overflow-hidden`}>
                 <div className="w-20 pt-2.5 flex items-start justify-center bg-[var(--color-surface)] border-r border-[var(--color-border)] h-full text-[15px] text-[var(--color-text-muted)] select-none">
-                  +55 🇧🇷
+                  +55
                 </div>
                 <input
                   name="phone"

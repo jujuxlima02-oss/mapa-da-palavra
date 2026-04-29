@@ -6,6 +6,7 @@ import { SocialProof } from "@/components/landing/SocialProof";
 import { Problem } from "@/components/landing/Problem";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Benefits } from "@/components/landing/Benefits";
+import Bonuses from "@/components/landing/Bonuses";
 import { Pricing } from "@/components/landing/Pricing";
 import { Guarantee } from "@/components/landing/Guarantee";
 import { FAQ } from "@/components/landing/FAQ";
@@ -69,6 +70,12 @@ export default function EvergreenPage() {
         ]}
         ctaText="Quero sair da confusão"
         offerSource={offerSource}
+        image={{
+          src: "/assets/imagem-produto.png",
+          alt: "Diário Bíblico Mapa da Palavra",
+          width: 768,
+          height: 576,
+        }}
       />
 
       <HowItWorks 
@@ -98,6 +105,8 @@ export default function EvergreenPage() {
         ctaText="Quero separar meu tempo com Deus"
         offerSource={offerSource}
       />
+
+      <Bonuses />
 
       <Pricing 
         label="Preço especial"
@@ -134,7 +143,7 @@ export default function EvergreenPage() {
       />
 
       <StickyCTA 
-        texto="Ler a Bíblia não deveria ser um exercício de sobrevivência espiritual. Deveria ser um encontro claro, firme e transformador com a Palavra de Deus. Se você quer parar de ler no improviso e começar a enxergar com mais direção, esse guia foi feito para você."
+        texto="Ler a Bíblia pode voltar a ser claro, firme e transformador. Com direção, você para de improvisar e reencontra constância na Palavra."
         botao="Quero firmar meu pacto"
         linhaAbaixo="R$ 39,90 • Garantia de 30 dias • Envio para seu endereço"
         offerSource={offerSource}

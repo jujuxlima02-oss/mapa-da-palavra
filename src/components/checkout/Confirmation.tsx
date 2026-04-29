@@ -3,7 +3,6 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { analytics } from "@/lib/analytics";
-import { BUNDLE_ITEM } from "@/lib/constants";
 import { CheckCircle2 } from "lucide-react";
 import confirmationImage from "../../../imagens_produto/Untitled_design_700x.webp";
 
@@ -75,9 +74,9 @@ export function Confirmation({
         </div>
 
         <div className="flex justify-between items-center text-sm">
-          <span className="text-[var(--color-text-muted)]">Brinde</span>
+          <span className="text-[var(--color-text-muted)]">Brindes</span>
           <span className="font-medium text-[var(--color-text)] text-right">
-            🎁 Brinde incluso: {BUNDLE_ITEM.name}
+            🎁 66 Cards de Versículos, Diário de Fé e Guia de Estudo em 30 Dias
           </span>
         </div>
         

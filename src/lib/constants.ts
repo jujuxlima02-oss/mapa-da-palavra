@@ -7,10 +7,12 @@
 
 export const PRODUCT = {
   name: process.env.NEXT_PUBLIC_PRODUCT_NAME || "Mapa da Palavra",
-  priceCents: Number(process.env.NEXT_PUBLIC_PRODUCT_PRICE_CENTS) || 3990,
+  priceCents: Number(process.env.NEXT_PUBLIC_PRODUCT_PRICE_CENTS) || 4990,
   get priceFormatted(): string {
     return formatCentsToBRL(this.priceCents);
   },
+  originalPriceCents: 8999,
+  originalPriceFormatted: "R$ 89,99",
   description: "Guia visual físico para estudar os 66 livros da Bíblia",
   pixExpiresInDays: 1,
 } as const;

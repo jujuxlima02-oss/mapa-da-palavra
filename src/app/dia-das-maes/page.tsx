@@ -14,7 +14,6 @@ import { Footer } from "@/components/landing/Footer";
 import { BuyNotification } from "@/components/landing/BuyNotification";
 import { featureFlags } from "@/lib/featureFlags";
 import mothersLifestyleImage from "../../../imagens_produto/gempages_582358901001815001-b2dfc7a1-1848-4ea8-892f-4cf80c4fdf18.jpg";
-import giftNecklaceImage from "../../../imagens_produto/Untitled_design_2_700x.png";
 
 export const metadata: Metadata = {
   title: "Mapa da Palavra | Dia das Mães",
@@ -50,14 +49,13 @@ export default function DiaDasMaesPage() {
         subheadline="Neste Dia das Mães, dê o Mapa da Palavra — um convite diário para encontro com Deus."
         buttonMainText="Quero garantir esse presente para minha mãe"
         buttonSecondaryText="Ver o que vem no presente"
-        supportLine="Produto físico + Colar Coração de Jesus • Garantia de 30 dias"
+        supportLine="Presente físico com Colar Coração de Jesus incluso • Garantia de 30 dias"
         offerSource={offerSource}
       />
 
       <SocialProof 
         label="Quem presenteou aprovou"
         template="Minha mãe amou. Foi o presente mais significativo que eu dei. Ela usa até hoje."
-        ctaText="Ver depoimentos"
       />
 
       <Problem 
@@ -69,6 +67,12 @@ export default function DiaDasMaesPage() {
         ]}
         ctaText="Quero um presente com significado"
         offerSource={offerSource}
+        image={{
+          src: "/assets/imagem-produto.png",
+          alt: "Diário Bíblico Mapa da Palavra",
+          width: 768,
+          height: 576,
+        }}
       />
 
       <HowItWorks 
@@ -104,7 +108,8 @@ export default function DiaDasMaesPage() {
                   <li className="flex gap-3 text-[var(--color-text)]">✅ <span>Ficam felizes quando percebem cuidado real na escolha</span></li>
                 </ul>
             </div>
-            <button className="text-[var(--color-primary)] uppercase tracking-widest text-sm font-bold hover:underline">Garantir agora por R$ 39,90 →</button>
+            <button className="mx-auto w-full rounded-full bg-[var(--color-accent)] px-8 py-4 font-bold text-[var(--color-text)] transition-colors hover:bg-[var(--color-accent-hover)] sm:w-auto">Quero garantir o presente dela agora →</button>
+            <p className="mt-3 text-sm font-medium text-[var(--color-text-muted)]">R$ 39,90 • Colar Coração de Jesus incluso • Garantia de 30 dias</p>
         </div>
       </section>
 
@@ -125,7 +130,7 @@ export default function DiaDasMaesPage() {
             <div className="relative mx-auto mb-8 max-w-md overflow-hidden rounded-2xl bg-[var(--color-surface-2)] shadow-sm ring-1 ring-[var(--color-border)] aspect-[4/3]">
                 {/* TODO: substituir por asset final do Nanobanana — Briefing 9: Brinde colar Coração de Jesus // PLACEHOLDER */}
                 <Image
-                  src={giftNecklaceImage}
+                  src="/assets/colar_coracao_jesus.png"
                   alt="Colar Coração de Jesus em close delicado sobre fundo claro"
                   width={448}
                   height={336}
@@ -141,7 +146,6 @@ export default function DiaDasMaesPage() {
                • Presente afetivo com valor espiritual percebido<br/>
                • Exclusivo da oferta de Dia das Mães
             </p>
-            <button className="text-[var(--color-primary)] uppercase tracking-widest text-sm font-bold hover:underline">Ver o brinde</button>
         </div>
       </section>
 
@@ -149,6 +153,7 @@ export default function DiaDasMaesPage() {
         label="Compra segura"
         text="Você também conta com garantia de 30 dias, para comprar com mais tranquilidade."
         linkText="Ver garantia"
+        showGiftCarousel
       />
 
       <FAQ 
@@ -165,7 +170,7 @@ export default function DiaDasMaesPage() {
       />
 
       <StickyCTA 
-        texto="No Dia das Mães, o que fica não é só o presente. É a sensação de ter sido lembrada com verdade. Se você quer dar algo que fale com o coração da sua mãe e com a fé dela, essa é uma escolha que faz sentido de ponta a ponta."
+        texto="Neste Dia das Mães, dê algo que fale ao coração e fortaleça a fé dela. Um presente com propósito, cuidado e Palavra de Deus para a rotina."
         botao="Quero garantir esse presente para minha mãe"
         linhaAbaixo="R$ 39,90 • Colar Coração de Jesus incluso • Garantia de 30 dias"
         offerSource={offerSource}
