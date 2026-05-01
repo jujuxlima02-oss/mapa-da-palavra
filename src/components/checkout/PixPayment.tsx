@@ -9,7 +9,6 @@ import { Button } from "@/components/ui/Button";
 import { Timer } from "@/components/ui/Timer";
 import { analytics } from "@/lib/analytics";
 import { PRODUCT } from "@/lib/constants";
-import productThumb from "../../../imagens_produto/6-1.png";
 
 interface PixPaymentProps {
   orderId: string;
@@ -126,7 +125,7 @@ export function PixPayment({
         <div className="relative mx-auto mt-6 h-16 w-16 overflow-hidden rounded-lg bg-[var(--color-surface)] ring-1 ring-[var(--color-border)]">
           {/* TODO: substituir por asset final do Nanobanana — Briefing 11: Micro mockup PIX // PLACEHOLDER */}
           <Image
-            src={productThumb}
+            src="/imagem-produto.png"
             alt="Miniatura do guia Mapa da Palavra com selo visual de pedido reservado"
             width={64}
             height={64}

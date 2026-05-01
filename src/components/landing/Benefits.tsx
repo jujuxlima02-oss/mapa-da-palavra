@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { analytics } from "@/lib/analytics";
 import type { OfferSource } from "@/lib/constants";
-import benefitsMockup from "../../../imagens_produto/07_700x.jpg";
+import benefitsMockup from "../../../public/assets/imagem_mapa_palavra2.jpeg";
 
 interface BenefitsProps {
   label: string;

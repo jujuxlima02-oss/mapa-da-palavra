@@ -13,7 +13,7 @@ import { StickyCTA } from "@/components/landing/StickyCTA";
 import { Footer } from "@/components/landing/Footer";
 import { BuyNotification } from "@/components/landing/BuyNotification";
 import { featureFlags } from "@/lib/featureFlags";
-import mothersLifestyleImage from "../../../imagens_produto/gempages_582358901001815001-b2dfc7a1-1848-4ea8-892f-4cf80c4fdf18.jpg";
+import mothersLifestyleImage from "../../../public/assets/imagem_mapa_palavra2.jpeg"; // TODO: substituir pela imagem correta
 
 export const metadata: Metadata = {
   title: "Mapa da Palavra | Dia das Mães",

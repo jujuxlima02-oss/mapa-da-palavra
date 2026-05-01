@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 import { PRODUCT, OfferSource } from "@/lib/constants";
 import { analytics } from "@/lib/analytics";
-import mothersPricingImage from "../../../imagens_produto/Untitled_design_700x.webp";
+import mothersPricingImage from "../../../public/assets/imagem_mapa_palavra2.jpeg"; // TODO: substituir pela imagem correta
 
 interface PricingProps {
   label: string;

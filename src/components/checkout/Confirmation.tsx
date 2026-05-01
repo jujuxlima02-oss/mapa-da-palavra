@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { analytics } from "@/lib/analytics";
 import { CheckCircle2 } from "lucide-react";
-import confirmationImage from "../../../imagens_produto/Untitled_design_700x.webp";
+import confirmationImage from "../../../public/assets/imagem_mapa_palavra2.jpeg"; // TODO: substituir pela imagem correta
 
 interface ConfirmationProps {
   orderId: string;
