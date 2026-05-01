@@ -43,7 +43,7 @@ export function Confirmation({
       <div className="relative mx-auto h-44 w-full max-w-md overflow-hidden rounded-2xl bg-[var(--color-surface)] ring-1 ring-[var(--color-border)]">
         {/* TODO: substituir por asset final do Nanobanana — Briefing 12: Mockup comemorativo confirmação // PLACEHOLDER */}
         <Image
-          src={confirmationImage}
+          src="/assets/pagamento-confirmado.png"
           alt="Guia Mapa da Palavra em apresentação comemorativa de pedido confirmado"
           width={448}
           height={336}
