@@ -40,7 +40,7 @@ export function Confirmation({
 
   return (
     <div className="bg-[var(--color-surface-2)] rounded-2xl shadow-sm border border-[var(--color-border)] p-8 sm:p-12 text-center max-w-2xl mx-auto space-y-6">
-      <div className="relative mx-auto h-44 w-full max-w-md overflow-hidden rounded-2xl bg-[var(--color-surface)] ring-1 ring-[var(--color-border)]">
+      <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl bg-[var(--color-surface)] ring-1 ring-[var(--color-border)]">
         {/* TODO: substituir por asset final do Nanobanana — Briefing 12: Mockup comemorativo confirmação // PLACEHOLDER */}
         <Image
           src="/assets/pagamento-confirmado.png"
@@ -48,8 +48,8 @@ export function Confirmation({
           width={448}
           height={336}
           sizes="(max-width: 768px) 100vw, 448px"
-          style={{ aspectRatio: "4 / 3" }}
-          className="object-contain p-4"
+          style={{ width: "100%", height: "auto" }}
+          className="mx-auto max-w-full rounded-2xl"
         />
       </div>
       <div className="w-20 h-20 bg-[var(--color-primary-highlight)] rounded-full flex items-center justify-center mx-auto shadow-inner border border-[var(--color-border)]">
