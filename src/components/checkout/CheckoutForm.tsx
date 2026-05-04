@@ -257,7 +257,9 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <div className="mb-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] p-6">
-        <h2 className="text-xl font-bold text-[var(--color-text)] mb-4">Seus dados</h2>
+        <h2 className="text-xl font-bold text-[var(--color-text)] mb-4">
+          Complete seu pedido e garanta sua jornada com a Palavra.
+        </h2>
         
         <div>
           <Input
@@ -584,7 +586,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
             Processando...
           </span>
         ) : (
-          "Pagar agora"
+          "Garantir meu Diário por R$ 49,90"
         )}
       </Button>
 
@@ -595,7 +597,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
       )}
       
       <p className="text-[11px] text-[var(--color-text-muted)] text-center mt-4 leading-relaxed px-4">
-        Ao clicar em &apos;Pagar agora&apos;, confirmo que li e concordo com os
+        Ao confirmar meu pedido do {PRODUCT.name}, confirmo que li e concordo com os
         <a href="/termos-de-uso" className="underline ml-1">Termos de Uso</a> e
         <a href="/politica-de-privacidade" className="underline ml-1">Política de Privacidade</a>.
       </p>
@@ -605,6 +607,9 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
          <span>✅ Garantia 30 dias</span>
          <span>📦 Entrega garantida</span>
       </div>
+      <p className="text-[11px] text-[var(--color-text-muted)] text-center mt-3 leading-relaxed px-4">
+        Acesso aos brindes digitais liberado imediatamente após a confirmação.
+      </p>
     </form>
   );
 }

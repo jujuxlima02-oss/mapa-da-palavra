@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { analytics } from "@/lib/analytics";
+import { PRODUCT } from "@/lib/constants";
 import { CheckCircle2 } from "lucide-react";
 import confirmationImage from "../../../public/assets/imagem_mapa_palavra2.jpeg"; // TODO: substituir pela imagem correta
 
@@ -58,10 +59,10 @@ export function Confirmation({
 
       <div className="space-y-2">
         <h1 className="text-3xl font-extrabold text-[var(--color-text)] tracking-tight">
-          Pagamento confirmado
+          Pagamento confirmado. Agora sua jornada com a Palavra tem data de começo.
         </h1>
         <p className="text-lg text-[var(--color-text-muted)] font-medium">
-          Parabéns, <span className="text-[var(--color-text)] font-bold">{firstName}</span>. Seu pedido foi confirmado com sucesso.
+          Parabéns, <span className="text-[var(--color-text)] font-bold">{firstName}</span>. Josué 1:8 ensina a meditar na Palavra dia e noite e cuidar de praticá-la. A bênção da constância não está apenas em possuir conteúdo, mas em caminhar com ele diariamente.
         </p>
       </div>
 
@@ -70,20 +71,38 @@ export function Confirmation({
         
         <div className="flex justify-between items-center text-sm pt-2">
           <span className="text-[var(--color-text-muted)]">Produto</span>
-          <span className="font-semibold text-[var(--color-text)] text-right">{productName}</span>
+          <span className="font-semibold text-[var(--color-text)] text-right">{PRODUCT.name}</span>
         </div>
 
-        <div className="flex justify-between items-center text-sm">
-          <span className="text-[var(--color-text-muted)]">Brindes</span>
-          <span className="font-medium text-[var(--color-text)] text-right">
-            🎁 66 Cards de Versículos, Diário de Fé e Guia de Estudo em 30 Dias
-          </span>
+        <div className="space-y-2 text-sm">
+          <span className="text-[var(--color-text-muted)]">Brindes digitais</span>
+          <div className="space-y-2">
+            <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-2)] p-3">
+              <p className="font-semibold text-[var(--color-text)]">66 Cards Mapa da Palavra</p>
+              <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+                Acesso digital imediato após a confirmação do pagamento.
+              </p>
+            </div>
+            <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-2)] p-3">
+              <p className="font-semibold text-[var(--color-text)]">Diário de Fé Mapa da Palavra</p>
+              <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+                Acesso digital imediato após a confirmação do pagamento.
+              </p>
+            </div>
+            <div className="rounded-lg border border-[var(--color-border)] bg-[var(--color-surface-2)] p-3">
+              <p className="font-semibold text-[var(--color-text)]">Guia de Estudo em 30 Dias</p>
+              <p className="mt-1 text-xs text-[var(--color-text-muted)]">
+                Acesso digital imediato após a confirmação do pagamento.
+              </p>
+            </div>
+          </div>
         </div>
         
         <div className="flex justify-between items-center text-sm">
-          <span className="text-[var(--color-text-muted)]">Valor pago</span>
+          <span className="text-[var(--color-text-muted)]">Valor confirmado</span>
           <span className="font-bold text-[var(--color-success)] bg-[var(--color-primary-highlight)] px-2 py-0.5 rounded">
-            {(amountCents / 100).toLocaleString("pt-BR", { style: "currency", currency: "BRL" })}
+            <span className="mr-1 text-[var(--color-text-muted)] line-through">De {PRODUCT.originalPriceFormatted}</span>
+            <span>por {PRODUCT.priceFormatted}</span>
           </span>
         </div>
 
@@ -96,9 +115,11 @@ export function Confirmation({
       </div>
 
       <div className="bg-[var(--color-primary-highlight)] text-[var(--color-text)] p-5 rounded-xl text-sm leading-relaxed border border-[var(--color-border)] shadow-sm text-left">
-        <strong className="block mb-1 text-base text-[var(--color-primary)]">🚚 Seu Mapa da Palavra está a caminho!</strong>
+        <strong className="block mb-1 text-base text-[var(--color-primary)]">Seu pedido do {PRODUCT.name} foi confirmado.</strong>
+        <p className="mb-2">Quando ele chegar, separe um lugar, uma caneta e um horário possível. Comece simples. Um dia por vez. Uma página por vez. Uma oração por vez.</p>
         <p className="mb-2">Prazo estimado: {shippingDeadline} a partir da confirmação do pagamento.</p>
-        <p>Você receberá atualizações por e-mail.</p>
+        <p className="mb-2">Os brindes digitais também fazem parte da sua jornada, com acesso liberado imediatamente após a confirmação do pagamento. Verifique o e-mail usado na compra ou acesse sua área de membros para baixar o 66 Cards Mapa da Palavra, o Diário de Fé Mapa da Palavra e o Guia de Estudo em 30 Dias.</p>
+        <p className="font-semibold">Senhor, eu não quero apenas ter a Tua Palavra por perto. Eu quero caminhar com ela.</p>
       </div>
     </div>
   );

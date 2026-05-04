@@ -106,7 +106,7 @@ export function PixPayment({
 
         <Button onClick={retryCheckout} size="lg" className="w-full h-14 text-lg mt-4">
           <RefreshCw className="mr-2 w-5 h-5" />
-          Gerar novo PIX
+          Gerar novo código e retomar minha jornada
         </Button>
       </div>
     );
@@ -115,8 +115,8 @@ export function PixPayment({
   return (
     <div className="bg-[var(--color-surface-2)] rounded-xl shadow-sm border border-[var(--color-border)] p-6 lg:p-10 w-full max-w-4xl mx-auto">
       <div className="text-center mb-10">
-        <h2 className="text-2xl font-bold text-[var(--color-text)]">Seu PIX está pronto</h2>
-        <p className="text-[var(--color-text-muted)] mt-2">Siga os passos abaixo e conclua seu pedido com confiança.</p>
+        <h2 className="text-2xl font-bold text-[var(--color-text)]">Seu PIX está pronto. Escaneie o código e confirme sua decisão.</h2>
+        <p className="text-[var(--color-text-muted)] mt-2">Siga os passos abaixo e conclua seu pedido do {PRODUCT.name} com confiança.</p>
         
         <div className="mt-4 flex items-center justify-center gap-3">
           <span className="text-sm font-semibold text-[var(--color-text-muted)] uppercase tracking-wide">Expira em</span>
@@ -126,7 +126,7 @@ export function PixPayment({
           {/* TODO: substituir por asset final do Nanobanana — Briefing 11: Micro mockup PIX // PLACEHOLDER */}
           <Image
             src="/assets/imagem-produto.png"
-            alt="Miniatura do guia Mapa da Palavra com selo visual de pedido reservado"
+            alt={`Miniatura do ${PRODUCT.name} com selo visual de pedido reservado`}
             width={64}
             height={64}
             sizes="64px"
@@ -136,6 +136,9 @@ export function PixPayment({
         </div>
         <p className="mx-auto mt-4 max-w-md text-sm text-[var(--color-text-muted)]">
           Seu pedido será processado assim que o pagamento for confirmado. Prazo de entrega: {shippingDeadline}.
+        </p>
+        <p className="mx-auto mt-2 max-w-md text-sm font-medium text-[var(--color-primary)]">
+          Assim que o pagamento for confirmado, sua jornada com a Palavra começa.
         </p>
       </div>
 

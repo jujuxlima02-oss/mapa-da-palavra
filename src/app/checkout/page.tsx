@@ -1,10 +1,16 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
-import { VALID_OFFER_SOURCES } from "@/lib/constants";
+import type { Metadata } from "next";
+import { PRODUCT, VALID_OFFER_SOURCES } from "@/lib/constants";
 import { CheckoutClient } from "@/components/checkout/CheckoutClient";
 import { CheckoutCountdownBar } from "@/components/checkout/CheckoutCountdownBar";
 
 import { Lock } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Finalizar pedido — Diário Bíblico: Mapa da Palavra",
+  description: "Complete seu pedido e garanta sua jornada diária com a Palavra de Deus.",
+};
 
 export default async function CheckoutPage({
   searchParams,
@@ -30,7 +36,7 @@ export default async function CheckoutPage({
           <div className="mb-5 w-full overflow-hidden rounded-xl border border-[var(--color-border)] shadow-sm">
             <Image
               src="/assets/banner-checkout.jpeg"
-              alt="Banner Mapa da Palavra"
+              alt={`Banner ${PRODUCT.name}`}
               width={2752}
               height={1536}
               sizes="(max-width: 768px) 100vw, 680px"
@@ -39,7 +45,7 @@ export default async function CheckoutPage({
             />
           </div>
           <h1 className="text-2xl font-black tracking-tighter text-[var(--color-text)]">
-            {offer === "dia-das-maes" ? "Um presente que ela vai usar todo dia." : "Seu diário de fé está esperando por você"}
+            Você está a um passo de começar sua jornada com a Palavra.
           </h1>
           <div className="flex items-center gap-1.5 mt-2 justify-center text-[var(--color-success)] bg-[var(--color-primary-highlight)] px-3 py-1 rounded-full text-xs font-semibold border border-[var(--color-border)]">
             <Lock className="w-3.5 h-3.5" />

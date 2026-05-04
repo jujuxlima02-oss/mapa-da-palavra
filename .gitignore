@@ -41,3 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+Mapa da Palavra/
+dev-server.*.log

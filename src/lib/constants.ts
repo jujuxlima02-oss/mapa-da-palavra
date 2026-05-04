@@ -1,21 +1,39 @@
 /**
- * Constantes do projeto — Mapa da Palavra
+ * Constantes do projeto — Diário Bíblico — Mapa da Palavra
  * 
  * Centraliza valores do produto, status e ofertas.
  * Todos os preços são em centavos para evitar problemas de ponto flutuante.
  */
 
 export const PRODUCT = {
-  name: process.env.NEXT_PUBLIC_PRODUCT_NAME || "Mapa da Palavra",
+  name: process.env.NEXT_PUBLIC_PRODUCT_NAME || "Diário Bíblico — Mapa da Palavra",
   priceCents: Number(process.env.NEXT_PUBLIC_PRODUCT_PRICE_CENTS) || 4990,
   get priceFormatted(): string {
     return formatCentsToBRL(this.priceCents);
   },
-  originalPriceCents: 8999,
-  originalPriceFormatted: "R$ 89,99",
-  description: "Guia visual físico para estudar os 66 livros da Bíblia",
+  originalPriceCents: 8990,
+  originalPriceFormatted: "R$ 89,90",
+  description: "Diário devocional bíblico estruturado com mapas temáticos, reflexões orientadas e espaço para registro pessoal",
   pixExpiresInDays: 1,
 } as const;
+
+export const DIGITAL_GIFTS = [
+  {
+    name: "66 Cards Mapa da Palavra",
+    description: "Um card para cada livro da Bíblia. Do Gênesis ao Apocalipse, cada card traz o versículo âncora e uma meditação curta para começar o dia.",
+    access: "digital-immediate",
+  },
+  {
+    name: "Diário de Fé Mapa da Palavra",
+    description: "Devocional diário imprimível com campos para gratidão, leitura, oração e declaração de fé. Uma página por dia, uma vida transformada.",
+    access: "digital-immediate",
+  },
+  {
+    name: "Guia de Estudo em 30 Dias",
+    description: "Os 66 livros em 30 dias. Cada dia tem livro, versículo, reflexão e desafio prático. O caminho pronto para quem não sabe por onde começar.",
+    access: "digital-immediate",
+  },
+] as const;
 
 export const BUNDLE_ITEM = {
   name: "Colar Coração de Jesus",

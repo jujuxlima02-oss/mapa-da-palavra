@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { PRODUCT, SHIPPING, formatCentsToBRL, type ShippingMode } from "@/lib/constants";
+import { DIGITAL_GIFTS, PRODUCT, SHIPPING, formatCentsToBRL, type ShippingMode } from "@/lib/constants";
 
 interface OrderSummaryProps {
   offerSource: string;
@@ -20,7 +20,7 @@ export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
             {/* TODO: substituir por asset final do Nanobanana — Briefing 10: Miniatura checkout // PLACEHOLDER */}
             <Image
               src="/assets/imagem-produto.png"
-              alt="Miniatura limpa do guia Mapa da Palavra"
+              alt={`Miniatura limpa do ${PRODUCT.name}`}
               width={64}
               height={64}
               sizes="64px"
@@ -29,10 +29,13 @@ export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
             />
           </div>
           <h3 className="font-semibold text-[var(--color-text)] leading-tight">{PRODUCT.name}</h3>
-          <p className="text-xs text-[var(--color-text-muted)] mt-1">Seu Diário para separar tempo com Deus.</p>
+          <p className="text-xs text-[var(--color-text-muted)] mt-1">
+            Seu pedido confirma uma decisão espiritual com clareza, segurança e direção.
+          </p>
         </div>
         <div className="text-right pl-4">
-          <p className="font-bold text-[var(--color-text)]">{PRODUCT.priceFormatted}</p>
+          <p className="text-xs text-[var(--color-text-muted)] line-through">De {PRODUCT.originalPriceFormatted}</p>
+          <p className="font-bold text-[var(--color-text)]">por {PRODUCT.priceFormatted}</p>
         </div>
       </div>
 
@@ -42,9 +45,14 @@ export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
             🎁 BRINDES DIGITAIS
           </span>
           <div className="space-y-1 text-sm text-[var(--color-text)]">
-            <p>🃏 66 Cards de Versículos</p>
-            <p>📓 Diário de Fé</p>
-            <p>📅 Guia de Estudo em 30 Dias</p>
+            {DIGITAL_GIFTS.map((gift) => (
+              <div key={gift.name}>
+                <p className="font-medium">{gift.name}</p>
+                <p className="text-xs text-[var(--color-text-muted)]">
+                  Digital • Acesso imediato após a confirmação do pagamento
+                </p>
+              </div>
+            ))}
           </div>
         </div>
         <span className="pt-0.5 font-semibold text-[var(--color-success)]">Grátis</span>
@@ -65,6 +73,9 @@ export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
       </div>
       <p className="text-xs text-[var(--color-text-muted)] -mt-1">
         Previsão de entrega: {shippingDeadline} após confirmação do pagamento
+      </p>
+      <p className="text-xs text-[var(--color-text-muted)]">
+        Você está a um passo de começar sua jornada com a Palavra.
       </p>
 
       <div className="border-t border-[var(--color-divider)] pt-3">
