@@ -16,6 +16,9 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Mapa da Palavra | Guia Visual dos 66 Livros da Bíblia",
   description: "Mapa da Palavra é um guia visual físico para estudar os 66 livros da Bíblia com clareza, direção e constância.",
+  other: {
+    "facebook-domain-verification": "pw5shmtez24xmwrgi2hjjz6riawa93",
+  },
 };
 
 export default function RootLayout({
