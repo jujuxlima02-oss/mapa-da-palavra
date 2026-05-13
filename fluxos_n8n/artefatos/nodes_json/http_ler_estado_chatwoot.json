@@ -1,0 +1,26 @@
+{
+  "name": "HTTP — Ler estado PIX no Chatwoot",
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4,
+  "parameters": {
+    "method": "GET",
+    "url": "=http://chatwoot_rails:3000/api/v1/accounts/{{ $json.account_id }}/conversations/{{ $json.conversation_id }}",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendHeaders": true,
+    "headerParameters": {
+      "parameters": [
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ]
+    },
+    "options": {}
+  },
+  "credentials": {
+    "httpHeaderAuth": {
+      "name": "Chatwoot API Access Token"
+    }
+  }
+}

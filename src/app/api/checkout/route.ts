@@ -13,6 +13,9 @@ import type { GestaoPayCreatePayload } from "@/types/gestaopay";
 export async function POST(request: Request) {
   // Força Content-Type JSON em todas as respostas
   const headers = { "Content-Type": "application/json" };
+  const GESTAOPAY_POSTBACK_URL =
+    process.env.GESTAOPAY_POSTBACK_URL ||
+    "https://n8n.wvke.site/webhook/mpalavra/gestaopay/pagamento-aprovado";
 
   try {
     const body = await request.json();
@@ -70,13 +73,10 @@ export async function POST(request: Request) {
 
     // 4. Integrar com GestãoPay e Atualizar o Banco
     try {
-      const baseUrl = process.env.BASE_URL || "http://localhost:3000";
-      const postbackUrl = `${baseUrl}/api/webhooks/gestaopay`;
-
       const gestaoPayPayload: GestaoPayCreatePayload = {
         amount: PRODUCT.priceCents, // 3990
         payment_method: "pix",
-        postback_url: postbackUrl,
+        postback_url: GESTAOPAY_POSTBACK_URL,
         customer: {
           name,
           email,

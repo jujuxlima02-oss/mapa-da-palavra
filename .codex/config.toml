@@ -1,0 +1,18 @@
+model = "gpt-5.5"
+model_provider = "openai"
+approval_policy = "on-request"
+approvals_reviewer = "user"
+
+[agents]
+max_threads = 6
+max_depth = 2
+job_max_runtime_seconds = 1800
+
+[sandbox_workspace_write]
+network_access = true
+
+[shell_environment_policy]
+exclude = ["OPENAI_API_KEY", "AWS_SECRET_ACCESS_KEY", "SSH_AUTH_SOCK"]
+
+[features]
+goal = true

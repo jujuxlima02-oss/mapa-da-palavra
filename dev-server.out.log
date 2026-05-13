@@ -1,30 +1,23 @@
 
 > diario_biblico@0.1.0 dev
-> next dev --hostname 0.0.0.0 --port 3000
+> next dev --hostname 127.0.0.1 --port 3000
 
 ▲ Next.js 16.2.3 (Turbopack)
-- Local:         http://localhost:3000
-- Network:       http://0.0.0.0:3000
+- Local:         http://127.0.0.1:3000
+- Network:       http://127.0.0.1:3000
 - Environments: .env.local, .env
-✓ Ready in 753ms
+✓ Ready in 717ms
 
- GET / 200 in 482ms (next.js: 192ms, application-code: 290ms)
- GET / 200 in 99ms (next.js: 7ms, application-code: 93ms)
-✓ Compiled in 496ms
- GET / 200 in 160ms (next.js: 91ms, application-code: 69ms)
- GET / 200 in 75ms (next.js: 5ms, application-code: 70ms)
- GET / 200 in 171ms (next.js: 4ms, application-code: 167ms)
-✓ Compiled in 83ms
- GET / 200 in 85ms (next.js: 50ms, application-code: 35ms)
- GET / 200 in 42ms (next.js: 3ms, application-code: 39ms)
- GET /checkout?offer=evergreen 200 in 152ms (next.js: 35ms, proxy.ts: 79ms, application-code: 38ms)
- GET /checkout?offer=evergreen 200 in 47ms (next.js: 7ms, proxy.ts: 7ms, application-code: 33ms)
-✓ Compiled in 286ms
- GET / 200 in 219ms (next.js: 111ms, application-code: 108ms)
- GET / 200 in 65ms (next.js: 6ms, application-code: 59ms)
- GET / 200 in 168ms (next.js: 6ms, application-code: 162ms)
- GET / 200 in 70ms (next.js: 5ms, application-code: 66ms)
- GET / 200 in 78ms (next.js: 5ms, application-code: 72ms)
-✓ Compiled in 150ms
- GET / 200 in 211ms (next.js: 99ms, application-code: 112ms)
- GET / 200 in 67ms (next.js: 4ms, application-code: 64ms)
+ GET / 200 in 807ms (next.js: 235ms, application-code: 573ms)
+ GET / 200 in 173ms (next.js: 4ms, application-code: 169ms)
+ GET / 200 in 199ms (next.js: 8ms, application-code: 191ms)
+ GET / 200 in 137ms (next.js: 2ms, application-code: 134ms)
+ GET / 200 in 157ms (next.js: 2ms, application-code: 155ms)
+ GET / 200 in 94ms (next.js: 1929µs, application-code: 92ms)
+ GET / 200 in 95ms (next.js: 2ms, application-code: 92ms)
+ GET /checkout?offer=evergreen 200 in 142ms (next.js: 41ms, proxy.ts: 4ms, application-code: 97ms)
+ GET /checkout?offer=evergreen 200 in 81ms (next.js: 3ms, proxy.ts: 4ms, application-code: 73ms)
+ GET /checkout?offer=evergreen 200 in 54ms (next.js: 4ms, proxy.ts: 4ms, application-code: 47ms)
+ POST /api/checkout 400 in 568ms (next.js: 410ms, application-code: 158ms)
+ GET /checkout?offer=evergreen 200 in 204ms (next.js: 5ms, proxy.ts: 15ms, application-code: 184ms)
+[?25h

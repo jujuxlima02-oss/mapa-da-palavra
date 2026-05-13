@@ -1,0 +1,33 @@
+{
+  "name": "HTTP — Persistir estado follow-up PIX",
+  "type": "n8n-nodes-base.httpRequest",
+  "typeVersion": 4,
+  "parameters": {
+    "method": "PUT",
+    "url": "=http://chatwoot_rails:3000/api/v1/accounts/{{ $json.account_id }}/conversations/{{ $json.conversation_id }}/custom_attributes",
+    "authentication": "genericCredentialType",
+    "genericAuthType": "httpHeaderAuth",
+    "sendHeaders": true,
+    "headerParameters": {
+      "parameters": [
+        {
+          "name": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "name": "Accept",
+          "value": "application/json"
+        }
+      ]
+    },
+    "sendBody": true,
+    "specifyBody": "json",
+    "jsonBody": "={{ { custom_attributes: $json.custom_attributes_to_update } }}",
+    "options": {}
+  },
+  "credentials": {
+    "httpHeaderAuth": {
+      "name": "Chatwoot API Access Token"
+    }
+  }
+}
