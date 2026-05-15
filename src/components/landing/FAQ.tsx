@@ -39,11 +39,11 @@ export function FAQ({ label, questions, supportLinkText }: FAQProps) {
                 <dt>
                   <button
                     type="button"
-                    className="flex w-full items-start justify-between text-left text-[var(--color-text)]"
+                    className="flex min-h-11 w-full items-center justify-between gap-4 py-2 text-left text-[var(--color-text)]"
                     onClick={() => toggle(index)}
                   >
                     <span className="text-base font-semibold leading-7">{faq.question}</span>
-                    <span className="ml-6 flex h-7 items-center text-[var(--color-accent)]">
+                    <span className="flex h-11 w-11 flex-shrink-0 items-center justify-center text-[var(--color-accent)]">
                       {openIndex === index ? (
                         <ChevronUp className="h-5 w-5" />
                       ) : (
@@ -62,7 +62,7 @@ export function FAQ({ label, questions, supportLinkText }: FAQProps) {
           </dl>
           
           <div className="pt-10 mt-10">
-             <Link href="https://wa.me/5521988369455">
+             <Link href="https://wa.me/5521988369455" className="inline-flex min-h-11 items-center">
                 <Button variant="ghost" className="text-[var(--color-primary)]">
                    {supportLinkText}
                 </Button>

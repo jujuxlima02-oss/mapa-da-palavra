@@ -19,13 +19,13 @@ export function UrgencyBar({ text, ctaText, offerSource }: UrgencyBarProps) {
           <p className="text-[var(--color-text-inverse)] font-medium text-sm sm:text-base">
             {text}
           </p>
-          <CampaignCheckoutLink offerSource={offerSource}>
+          <CampaignCheckoutLink offerSource={offerSource} className="inline-flex min-h-11 items-center justify-center">
              <button 
                 onClick={() => {
                 analytics.trackEvent("select_promotion");
                 analytics.ctaClick(offerSource, "urgency_bar");
                 }}
-                className="whitespace-nowrap text-xs uppercase tracking-wider font-bold bg-[var(--color-surface-2)] text-[var(--color-primary)] px-3 py-1.5 rounded-full hover:bg-[var(--color-surface)] transition-colors"
+                className="min-h-11 whitespace-nowrap rounded-full bg-[var(--color-surface-2)] px-4 py-2 text-xs font-bold uppercase tracking-wider text-[var(--color-primary)] transition-colors hover:bg-[var(--color-surface)]"
                 style={{ fontSize: "0.70rem" }}
              >
                 {ctaText}

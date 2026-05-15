@@ -14,7 +14,7 @@ interface GuaranteeProps {
 
 const giftSlides = [
   {
-    src: "/assets/colar_coracao_jesus2.png",
+    src: "/assets/colar_coracao_jesus2.webp",
     alt: "Colar Coração Jesus na caixa",
   },
 ];
@@ -61,7 +61,7 @@ export function Guarantee({ label, text, linkText, showGiftCarousel = false }: G
       <p className="text-base leading-7 text-[var(--color-text-muted)] mb-6">
         {text}
       </p>
-      <Link href="/politica-de-garantia" className="text-sm font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]">
+      <Link href="/politica-de-garantia" className="inline-flex min-h-11 items-center justify-center text-sm font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]">
         {linkText} &rarr;
       </Link>
     </div>

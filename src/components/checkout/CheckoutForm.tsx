@@ -598,11 +598,17 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
         </div>
       )}
       
-      <p className="text-[11px] text-[var(--color-text-muted)] text-center mt-4 leading-relaxed px-4">
-        Ao confirmar meu pedido do {PRODUCT.name}, confirmo que li e concordo com os
-        <a href="/termos-de-uso" className="underline ml-1">Termos de Uso</a> e
-        <a href="/politica-de-privacidade" className="underline ml-1">Política de Privacidade</a>.
+      <p className="mt-4 px-4 text-center text-[11px] leading-relaxed text-[var(--color-text-muted)]">
+        Ao confirmar meu pedido do {PRODUCT.name}, confirmo que li e concordo com os documentos abaixo.
       </p>
+      <div className="mt-2 flex flex-wrap items-center justify-center gap-2 text-[11px] font-medium text-[var(--color-text-muted)]">
+        <a href="/termos-de-uso" className="inline-flex min-h-11 items-center justify-center rounded-md px-3 underline">
+          Termos de Uso
+        </a>
+        <a href="/politica-de-privacidade" className="inline-flex min-h-11 items-center justify-center rounded-md px-3 underline">
+          Política de Privacidade
+        </a>
+      </div>
 
       <div className="flex justify-center items-center gap-4 mt-6 text-[11px] text-[var(--color-text-faint)] font-medium">
          <span>🔒 Compra segura</span>
