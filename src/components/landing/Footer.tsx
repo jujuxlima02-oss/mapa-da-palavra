@@ -18,6 +18,9 @@ export function Footer() {
         <p className="text-[var(--color-dark-text)]/70 text-sm text-center max-w-md mb-6">
           {PRODUCT.name} — Uma marca registrada. Todos os direitos reservados {new Date().getFullYear()}.
         </p>
+        <p className="mb-6 max-w-md text-center text-xs leading-5 text-[var(--color-dark-text)]/55">
+          Mapa da Palavra • CNPJ 59.395.406/0001-63 • Rio de Janeiro - RJ
+        </p>
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 text-sm text-[var(--color-dark-text)]/55">
            <Link href="/termos-de-uso" className="hover:text-[var(--color-dark-text)]">Termos de Uso</Link>
            <Link href="/politica-de-privacidade" className="hover:text-[var(--color-dark-text)]">Privacidade</Link>

@@ -26,7 +26,7 @@ export default function TermosDeUsoPage() {
 
         <section className="space-y-6 text-base leading-7 text-[var(--color-text)]">
           <p>
-            Este site é operado por <strong>[RAZÃO SOCIAL]</strong>, inscrita no CNPJ sob o nº <strong>[CNPJ]</strong>.
+            Este site é operado por <strong>Mapa da Palavra</strong>, inscrita no CNPJ sob o nº <strong>59.395.406/0001-63</strong>, com sede em <strong>Rio de Janeiro - RJ</strong>.
           </p>
 
           <h2 className="text-xl font-semibold text-[var(--color-text)]">1. Objeto</h2>
@@ -66,7 +66,7 @@ export default function TermosDeUsoPage() {
 
           <h2 className="text-xl font-semibold text-[var(--color-text)]">6. Foro</h2>
           <p>
-            Fica eleito o foro da comarca de <strong>[CIDADE/UF]</strong> para dirimir eventuais controvérsias, com renúncia a qualquer outro, por mais privilegiado que seja.
+            Fica eleito o foro da comarca de <strong>Rio de Janeiro - RJ</strong> para dirimir eventuais controvérsias, com renúncia a qualquer outro, por mais privilegiado que seja.
           </p>
 
           <h2 className="text-xl font-semibold text-[var(--color-text)]">7. Contato</h2>

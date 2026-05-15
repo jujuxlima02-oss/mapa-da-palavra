@@ -5,16 +5,7 @@ export function proxy(request: NextRequest) {
   const { pathname, searchParams } = request.nextUrl;
 
   if (pathname === "/dia-das-maes") {
-    const endDateStr = process.env.SEASONAL_CAMPAIGN_END_DATE;
-
-    if (endDateStr) {
-      const endDate = new Date(endDateStr);
-      const now = new Date();
-
-      if (now > endDate) {
-        return NextResponse.redirect(new URL("/", request.url));
-      }
-    }
+    return NextResponse.redirect(new URL("/", request.url), 308);
   }
 
   if (pathname === "/checkout" && !searchParams.has("offer")) {

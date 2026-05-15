@@ -62,7 +62,7 @@ export function FAQ({ label, questions, supportLinkText }: FAQProps) {
           </dl>
           
           <div className="pt-10 mt-10">
-             <Link href="https://wa.me/seunumerodeatendimento">
+             <Link href="https://wa.me/5521988369455">
                 <Button variant="ghost" className="text-[var(--color-primary)]">
                    {supportLinkText}
                 </Button>

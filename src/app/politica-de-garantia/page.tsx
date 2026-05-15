@@ -24,6 +24,10 @@ export default function PoliticaDeGarantiaPage() {
         </header>
 
         <section className="space-y-6 text-base leading-7 text-[var(--color-text)]">
+          <p>
+            Esta política é operada por <strong>Mapa da Palavra</strong>, CNPJ <strong>59.395.406/0001-63</strong>, com sede em <strong>Rio de Janeiro - RJ</strong>.
+          </p>
+
           <h2 className="text-xl font-semibold text-[var(--color-text)]">1. Garantia legal de arrependimento</h2>
           <p>
             Você pode exercer o direito de arrependimento em até 30 dias, conforme o CDC, desde que o produto esteja intacto, sem sinais de uso e com seus itens originais.

@@ -25,7 +25,7 @@ export default function PoliticaDePrivacidadePage() {
 
         <section className="space-y-6 text-base leading-7 text-[var(--color-text)]">
           <p>
-            Este site é operado por <strong>[RAZÃO SOCIAL]</strong>, CNPJ <strong>[CNPJ]</strong>.
+            Este site é operado por <strong>Mapa da Palavra</strong>, CNPJ <strong>59.395.406/0001-63</strong>, com sede em <strong>Rio de Janeiro - RJ</strong>.
           </p>
 
           <h2 className="text-xl font-semibold text-[var(--color-text)]">1. Dados coletados</h2>

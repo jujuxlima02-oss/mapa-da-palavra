@@ -16,11 +16,22 @@ const productShortName = "Mapa da Palavra";
 export const metadata: Metadata = {
   title: `${productName} | Sua jornada com a Palavra começa aqui`,
   description: `Organize sua leitura bíblica, aprofunde sua fé e registre o que Deus está falando com você. Garanta o ${productName} por ${PRODUCT.priceFormatted}.`,
+  alternates: {
+    canonical: "https://mapadapalavra.online",
+  },
   openGraph: {
     title: `${productName} | Sua jornada com a Palavra começa aqui`,
     description: `Organize sua leitura bíblica, aprofunde sua fé e registre o que Deus está falando com você. Garanta o ${productName} por ${PRODUCT.priceFormatted}.`,
     url: "https://mapadapalavra.online",
     siteName: productName,
+    images: [
+      {
+        url: "https://mapadapalavra.online/assets/imagem_mapa_palavra4.webp",
+        width: 1200,
+        height: 1200,
+        alt: productName,
+      },
+    ],
     locale: "pt_BR",
     type: "website",
   },
