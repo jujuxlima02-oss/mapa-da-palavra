@@ -2,7 +2,6 @@
 
 import React, { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 import Link from "next/link";
 import { analytics } from "@/lib/analytics";
 
@@ -62,10 +61,13 @@ export function FAQ({ label, questions, supportLinkText }: FAQProps) {
           </dl>
           
           <div className="pt-10 mt-10">
-             <Link href="https://wa.me/5521988369455" className="inline-flex min-h-11 items-center">
-                <Button variant="ghost" className="text-[var(--color-primary)]">
-                   {supportLinkText}
-                </Button>
+             <Link
+               href="https://wa.me/5521988369455"
+               target="_blank"
+               rel="noopener noreferrer"
+               className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg px-4 py-2 text-sm font-medium text-[var(--color-primary)] transition-colors hover:bg-[var(--color-primary-highlight)] hover:text-[var(--color-text)]"
+             >
+                {supportLinkText}
              </Link>
           </div>
         </div>
