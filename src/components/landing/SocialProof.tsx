@@ -19,42 +19,42 @@ export function SocialProof({ label, ratingLabel }: SocialProofProps) {
       {
         author: "Simone P.",
         text: "Achei um grande recurso para aprender, entender e aplicar a Palavra. A parte sobre o Filho Pródigo tocou uma dúvida que eu tinha; antes eu não entendia, agora entendo melhor. Ainda não consegui comprar, mas vejo valor no material.",
-        image: "/reviews/depo03.jpg",
+        image: "/reviews/depo03.webp",
       },
       {
         author: "Karina L.",
         text: "O conteúdo é fantástico e muito importante. A única coisa que eu mudaria seria o tamanho da fonte em algumas partes, porque ficou difícil de ler sem esforço. Mesmo assim, o material tem muito valor.",
-        image: "/reviews/depo05.jpg",
+        image: "/reviews/depo05.webp",
       },
       {
         author: "Amanda R.",
         text: "O material me ajudou a desacelerar e entender melhor as Escrituras. As perguntas são claras, fazem sentido e me dão espaço para refletir com mais calma sobre o que estou lendo.",
-        image: "/reviews/depo01.jpg",
+        image: "/reviews/depo01.webp",
       },
       {
         author: "Gabriela T.",
         text: "Meus pais me deram esse material de aniversário e desde então tenho usado todos os dias. Gosto de estudar no meu ritmo e também compartilhar percepções com meus irmãos e amigos. Isso aproximou nossa família das conversas sobre as Escrituras.",
-        image: "/reviews/depo02.jpg",
+        image: "/reviews/depo02.webp",
       },
       {
         author: "Juliana M.",
         text: "Minha irmã comprou esse material para mim de presente, e eu comecei sem saber bem o que esperar. As perguntas me fazem refletir profundamente, tanto quando estudo sozinha quanto quando converso com a família. Foi um presente útil de verdade.",
-        image: "/reviews/depo03.jpg",
+        image: "/reviews/depo03.webp",
       },
       {
         author: "Fernanda E.",
         text: "Estudar dessa forma fez as Escrituras ganharem vida para mim. Não fico só lendo palavras; eu penso, reflito e vejo como aquilo impacta minha vida. Isso renovou meu amor pela Bíblia.",
-        image: "/reviews/depo04.jpg",
+        image: "/reviews/depo04.webp",
       },
       {
         author: "Beatriz L.",
         text: "Sempre que termino uma sessão, saio encorajada e pensativa. As perguntas me ajudam a aplicar o que li de um jeito mais significativo. Nas últimas semanas, percebi crescimento espiritual na minha rotina.",
-        image: "/reviews/depo05.jpg",
+        image: "/reviews/depo05.webp",
       },
       {
         author: "Mônica R.",
         text: "Cada pergunta me faz pensar no versículo de forma pessoal. Percebo que escrevo mais no diário, oro com mais intenção e fico menos no automático quando leio a Palavra.",
-        image: "/reviews/depo06.jpg",
+        image: "/reviews/depo06.webp",
       },
     ],
     []
@@ -100,6 +100,7 @@ export function SocialProof({ label, ratingLabel }: SocialProofProps) {
                   fill
                   sizes="(max-width: 640px) 100vw, 320px"
                   className="object-cover object-top"
+                  quality={70}
                 />
               </div>
               <div className="flex-1 text-left">

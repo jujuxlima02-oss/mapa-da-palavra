@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Metadata } from "next";
 import { UrgencyBar } from "@/components/landing/UrgencyBar";
 import { SocialProof } from "@/components/landing/SocialProof";
@@ -7,6 +6,7 @@ import { Guarantee } from "@/components/landing/Guarantee";
 import { FAQ } from "@/components/landing/FAQ";
 import { Footer } from "@/components/landing/Footer";
 import { BuyNotification } from "@/components/landing/BuyNotification";
+import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
 import { DIGITAL_GIFTS, PRODUCT, SHIPPING } from "@/lib/constants";
 import { featureFlags } from "@/lib/featureFlags";
 
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: `${productName} | Sua jornada com a Palavra começa aqui`,
     description: `Organize sua leitura bíblica, aprofunde sua fé e registre o que Deus está falando com você. Garanta o ${productName} por ${PRODUCT.priceFormatted}.`,
-    url: "https://seusite.com",
+    url: "https://mapadapalavra.online",
     siteName: productName,
     locale: "pt_BR",
     type: "website",
@@ -41,9 +41,9 @@ function CheckoutLink({
       : "inline-flex min-h-12 w-full items-center justify-center rounded-lg bg-[var(--color-primary)] px-6 py-3 text-center text-sm font-bold uppercase tracking-wide text-[var(--color-text-inverse)] shadow-lg transition hover:bg-[var(--color-primary-hover)] sm:w-auto";
 
   return (
-    <Link href={`/checkout?offer=${offerSource}`} className={classes}>
+    <CampaignCheckoutLink offerSource={offerSource} className={classes}>
       {children}
-    </Link>
+    </CampaignCheckoutLink>
   );
 }
 
@@ -98,12 +98,13 @@ export default function EvergreenPage() {
           <div className="lg:pl-6">
             <div className="relative mx-auto w-full max-w-4xl overflow-hidden rounded-xl bg-[var(--color-surface)] shadow-2xl">
               <Image
-                src="/assets/imagem_mapa_palavra4.png"
+                src="/assets/imagem_mapa_palavra4.webp"
                 alt={productShortName}
                 width={1024}
                 height={576}
                 sizes="(max-width: 1024px) 100vw, 1024px"
                 className="h-auto w-full object-contain"
+                quality={72}
                 priority
               />
               <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-[var(--color-border)]/30" />

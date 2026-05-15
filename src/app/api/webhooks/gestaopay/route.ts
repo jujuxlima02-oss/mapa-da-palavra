@@ -10,12 +10,15 @@ export async function POST(request: Request) {
     let payload: GestaoPayWebhookPayload;
     try {
       payload = JSON.parse(rawBody) as GestaoPayWebhookPayload;
-    } catch (parseErr) {
-      console.error("[Webhook GestãoPay] Falha ao fazer parse do JSON recebido:", rawBody);
+    } catch {
+      console.warn("[Webhook GestãoPay] JSON inválido recebido. Corpo omitido para proteger dados pessoais.");
       return NextResponse.json({ message: "OK" }, { status: 200 }); // Sempre retornar 200
     }
 
-    console.log("[Webhook GestãoPay] Payload Recebido:", payload);
+    console.log("[Webhook GestãoPay] Evento recebido.", {
+      gatewayId: payload.Id,
+      status: payload.Status,
+    });
 
     if (!payload.Id) {
       console.warn("[Webhook GestãoPay] Payload sem campo Id detectado. Parando processamento.");
@@ -58,7 +61,7 @@ export async function POST(request: Request) {
             paidAt: new Date()
           }
         });
-        console.log(`[Webhook GestãoPay] ✅ Pedido ${order.id} validado e marcado como PAID com sucesso!`);
+        console.log(`[Webhook GestãoPay] Pedido ${order.id} validado e marcado como PAID com sucesso.`);
       } else if (remoteStatus === "REFUSED") {
         await prisma.order.update({
           where: { id: order.id },
@@ -66,7 +69,7 @@ export async function POST(request: Request) {
             status: "ERROR",
           }
         });
-        console.log(`[Webhook GestãoPay] ❌ Pedido ${order.id} encerrado como ERROR após status REFUSED.`);
+        console.log(`[Webhook GestãoPay] Pedido ${order.id} encerrado como ERROR após status REFUSED.`);
       } else if (remoteStatus === "EXPIRED") {
         await prisma.order.update({
           where: { id: order.id },
@@ -74,13 +77,17 @@ export async function POST(request: Request) {
             status: "EXPIRED",
           }
         });
-        console.log(`[Webhook GestãoPay] ⌛ Pedido ${order.id} encerrado como EXPIRED.`);
+        console.log(`[Webhook GestãoPay] Pedido ${order.id} encerrado como EXPIRED.`);
       } else {
         console.log(`[Webhook GestãoPay] Status remoto ${remoteStatus} não altera o pedido ${order.id}.`);
       }
 
     } catch (checkErr) {
-      console.error(`[Webhook GestãoPay] Erro crítico ao fazer double-check na transação ${webhookData.gatewayId}`, checkErr);
+      const message = checkErr instanceof Error ? checkErr.message : "Erro desconhecido";
+      console.error("[Webhook GestãoPay] Erro crítico ao fazer double-check.", {
+        gatewayId: webhookData.gatewayId,
+        message,
+      });
       // Evitar crash da ponta e retentativas exaustivas no gateway se ele estiver intermitente
     }
 
@@ -88,7 +95,8 @@ export async function POST(request: Request) {
     return NextResponse.json({ message: "OK" }, { status: 200 });
 
   } catch (err) {
-    console.error("[Webhook GestãoPay] Falha irrecuperável na rota do Webhook:", err);
+    const message = err instanceof Error ? err.message : "Erro desconhecido";
+    console.error("[Webhook GestãoPay] Falha irrecuperável na rota do Webhook.", { message });
     return NextResponse.json({ message: "OK" }, { status: 200 });
   }
 }

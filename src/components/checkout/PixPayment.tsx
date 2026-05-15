@@ -8,12 +8,14 @@ import { Copy, RefreshCw, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Timer } from "@/components/ui/Timer";
 import { analytics } from "@/lib/analytics";
+import { buildCheckoutHref } from "@/lib/campaignParams";
 import { PRODUCT } from "@/lib/constants";
 
 interface PixPaymentProps {
   orderId: string;
   pixCopyPaste: string;
   pixExpiresAt: Date;
+  amountCents: number;
   offerSource: string;
   shippingDeadline: string;
   isAlreadyExpired?: boolean;
@@ -23,6 +25,7 @@ export function PixPayment({
   orderId,
   pixCopyPaste,
   pixExpiresAt,
+  amountCents,
   offerSource,
   shippingDeadline,
   isAlreadyExpired = false,
@@ -34,9 +37,9 @@ export function PixPayment({
   useEffect(() => {
     // GA4 Event - PIX gerado (apenas se for um PIX fresco)
     if (!isAlreadyExpired) {
-      analytics.pixGenerated(offerSource, orderId, PRODUCT.priceCents);
+      analytics.pixGenerated(offerSource, orderId, amountCents);
     }
-  }, [offerSource, orderId, isAlreadyExpired]);
+  }, [offerSource, orderId, amountCents, isAlreadyExpired]);
 
   // Polling mechanism (Tarefa 18)
   useEffect(() => {
@@ -85,7 +88,7 @@ export function PixPayment({
   };
 
   const retryCheckout = () => {
-    router.push(`/checkout?offer=${offerSource}`);
+    router.push(buildCheckoutHref(offerSource, window.location.search));
   };
 
   if (isExpired) {
@@ -125,7 +128,7 @@ export function PixPayment({
         <div className="relative mx-auto mt-6 h-16 w-16 overflow-hidden rounded-lg bg-[var(--color-surface)] ring-1 ring-[var(--color-border)]">
           {/* TODO: substituir por asset final do Nanobanana — Briefing 11: Micro mockup PIX // PLACEHOLDER */}
           <Image
-            src="/assets/imagem-produto.png"
+            src="/assets/imagem-produto.webp"
             alt={`Miniatura do ${PRODUCT.name} com selo visual de pedido reservado`}
             width={64}
             height={64}

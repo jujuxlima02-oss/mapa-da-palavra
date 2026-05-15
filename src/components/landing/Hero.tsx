@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import Link from "next/link";
+import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
 import { analytics } from "@/lib/analytics";
 import type { OfferSource } from "@/lib/constants";
 
@@ -24,7 +24,7 @@ export function Hero({
   offerSource,
 }: HeroProps) {
   const heroImage =
-    offerSource === "dia-das-maes" ? "/assets/imagem_mapa_palavra5.png" : "/assets/imagem_mapa_palavra4.png";
+    offerSource === "dia-das-maes" ? "/assets/imagem_mapa_palavra5.webp" : "/assets/imagem_mapa_palavra4.webp";
   const headlineClasses =
     offerSource === "dia-das-maes"
       ? "text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl"
@@ -47,7 +47,7 @@ export function Hero({
               {subheadline}
             </p>
             <div className="mt-10 flex justify-center sm:justify-start">
-            <Link href={`/checkout?offer=${offerSource}`} className="w-full sm:w-auto">
+            <CampaignCheckoutLink offerSource={offerSource} className="w-full sm:w-auto">
               <Button 
                 size="lg" 
                 className="w-full sm:w-auto mx-auto px-6 sm:px-6"
@@ -55,7 +55,7 @@ export function Hero({
               >
                 {buttonMainText}
               </Button>
-            </Link>
+            </CampaignCheckoutLink>
           </div>
             <p className="mt-6 text-sm text-[var(--color-dark-text)]/70 font-medium">
             {supportLine}
@@ -71,6 +71,7 @@ export function Hero({
               height={576}
               sizes="(max-width: 1024px) 100vw, 1024px"
               className="object-contain w-full h-auto"
+              quality={72}
               preload
             />
             {/* Decoração da borda */}

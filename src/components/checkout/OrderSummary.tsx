@@ -19,7 +19,7 @@ export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
           <div className="relative mb-3 h-16 w-16 overflow-hidden rounded-lg bg-[var(--color-surface-2)] ring-1 ring-[var(--color-border)]">
             {/* TODO: substituir por asset final do Nanobanana — Briefing 10: Miniatura checkout // PLACEHOLDER */}
             <Image
-              src="/assets/imagem-produto.png"
+              src="/assets/imagem-produto.webp"
               alt={`Miniatura limpa do ${PRODUCT.name}`}
               width={64}
               height={64}

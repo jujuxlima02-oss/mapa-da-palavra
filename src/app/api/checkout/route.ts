@@ -7,7 +7,7 @@ import {
   cleanCEP,
 } from "@/lib/validations";
 import { createPixTransaction } from "@/lib/gestaopay";
-import { PRODUCT, VALID_OFFER_SOURCES } from "@/lib/constants";
+import { PRODUCT, SHIPPING, VALID_OFFER_SOURCES, type ShippingMode } from "@/lib/constants";
 import type { GestaoPayCreatePayload } from "@/types/gestaopay";
 
 export async function POST(request: Request) {
@@ -43,10 +43,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ errors }, { status: 400, headers });
     }
 
-    const { name, email, phone, cpf, offerSource, cep, rua, numero, complemento, cidade, estado, shippingMode, shippingPrice } = body;
+    const { name, email, phone, cpf, offerSource, cep, rua, numero, complemento, cidade, estado, shippingMode } = body;
     const documentClean = cleanCPF(cpf);
     const phoneClean = cleanPhone(phone);
     const cepClean = cleanCEP(cep);
+    const normalizedShippingMode: ShippingMode = shippingMode === "express" ? "express" : "free";
+    const serverShippingPrice = SHIPPING[normalizedShippingMode].price;
+    const orderTotalCents = PRODUCT.priceCents + serverShippingPrice;
 
     // 3. Criar registro Order no Prisma com status PENDING
     // Isso garante que temos a persistência de qual cliente tentou comprar e sua intenção
@@ -57,10 +60,10 @@ export async function POST(request: Request) {
         customerPhone: phoneClean,
         customerCpf: documentClean,
         productName: PRODUCT.name,
-        amountCents: PRODUCT.priceCents,
+        amountCents: orderTotalCents,
         offerSource: offerSource,
-        shippingMode: shippingMode === "express" ? "express" : "free",
-        shippingPrice: Number.isFinite(Number(shippingPrice)) ? Number(shippingPrice) : 0,
+        shippingMode: normalizedShippingMode,
+        shippingPrice: serverShippingPrice,
         status: "PENDING",
         cep: cepClean,
         rua,
@@ -74,7 +77,7 @@ export async function POST(request: Request) {
     // 4. Integrar com GestãoPay e Atualizar o Banco
     try {
       const gestaoPayPayload: GestaoPayCreatePayload = {
-        amount: PRODUCT.priceCents, // 3990
+        amount: orderTotalCents,
         payment_method: "pix",
         postback_url: GESTAOPAY_POSTBACK_URL,
         customer: {
@@ -102,9 +105,12 @@ export async function POST(request: Request) {
           provider_name: "Saints Label",
           offer_source: offerSource,
           order_id: order.id,
+          shipping_mode: normalizedShippingMode,
+          shipping_price: String(serverShippingPrice),
+          order_total_cents: String(orderTotalCents),
         },
         shipping: {
-          fee: 0,
+          fee: serverShippingPrice,
           address: {
             street: rua,
             number: numero,
@@ -137,7 +143,8 @@ export async function POST(request: Request) {
       return NextResponse.json({ orderId: order.id }, { status: 201, headers });
 
     } catch (gestaoPayError) {
-      console.error("[Checkout API] Falha na GestãoPay:", gestaoPayError);
+      const message = gestaoPayError instanceof Error ? gestaoPayError.message : "Erro desconhecido";
+      console.error("[Checkout API] Falha na GestãoPay.", { message });
 
       // Atualiza o pedido alertando que a tentativa de gateway falou
       await prisma.order.update({
@@ -155,7 +162,8 @@ export async function POST(request: Request) {
     }
 
   } catch (err) {
-    console.error("[Checkout API] Falha Global Severa:", err);
+    const message = err instanceof Error ? err.message : "Erro desconhecido";
+    console.error("[Checkout API] Falha Global Severa.", { message });
     // Dispara 500 caso o request.json() ou falha no try-block geral de erro fatal ocorra!
     return NextResponse.json(
       { message: "Erro interno do servidor." },

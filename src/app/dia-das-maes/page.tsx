@@ -12,8 +12,8 @@ import { FAQ } from "@/components/landing/FAQ";
 import { StickyCTA } from "@/components/landing/StickyCTA";
 import { Footer } from "@/components/landing/Footer";
 import { BuyNotification } from "@/components/landing/BuyNotification";
+import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
 import { featureFlags } from "@/lib/featureFlags";
-import mothersLifestyleImage from "../../../public/assets/imagem_mapa_palavra2.jpeg"; // TODO: substituir pela imagem correta
 
 export const metadata: Metadata = {
   title: "Mapa da Palavra | Dia das Mães",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Mapa da Palavra | Dia das Mães",
     description: "Neste Dia das Mães, dê mais do que um presente.",
-    url: "https://seusite.com/dia-das-maes",
+    url: "https://mapadapalavra.online/dia-das-maes",
     siteName: "Mapa da Palavra",
     locale: "pt_BR",
     type: "website",
@@ -68,7 +68,7 @@ export default function DiaDasMaesPage() {
         ctaText="Quero um presente com significado"
         offerSource={offerSource}
         image={{
-          src: "/assets/imagem-produto.png",
+          src: "/assets/imagem-produto.webp",
           alt: "Diário Bíblico Mapa da Palavra",
           width: 768,
           height: 576,
@@ -90,13 +90,14 @@ export default function DiaDasMaesPage() {
             <div className="relative mx-auto mb-10 max-w-xl overflow-hidden rounded-2xl shadow-sm ring-1 ring-[var(--color-border)] aspect-[4/3]">
                 {/* TODO: substituir por asset final do Nanobanana — Briefing 7: Mãe cristã brasileira // PLACEHOLDER */}
                 <Image
-                  src={mothersLifestyleImage}
+                  src="/assets/imagem_mapa_palavra2.webp"
                   alt="Mãe cristã brasileira lendo o guia visual da Bíblia em um ambiente acolhedor"
                   width={672}
                   height={504}
                   sizes="(max-width: 1024px) 100vw, 672px"
                   style={{ aspectRatio: "4 / 3" }}
                   className="object-cover"
+                  quality={72}
                 />
             </div>
             <div className="max-w-xl mx-auto bg-[var(--color-surface)] p-8 rounded-2xl border border-[var(--color-border)] flex flex-col items-start text-left mb-10">
@@ -108,7 +109,11 @@ export default function DiaDasMaesPage() {
                   <li className="flex gap-3 text-[var(--color-text)]">✅ <span>Ficam felizes quando percebem cuidado real na escolha</span></li>
                 </ul>
             </div>
-            <button className="mx-auto w-full rounded-full bg-[var(--color-accent)] px-8 py-4 font-bold text-[var(--color-text)] transition-colors hover:bg-[var(--color-accent-hover)] sm:w-auto">Quero garantir o presente dela agora →</button>
+            <CampaignCheckoutLink offerSource={offerSource}>
+              <button className="mx-auto w-full rounded-full bg-[var(--color-accent)] px-8 py-4 font-bold text-[var(--color-text)] transition-colors hover:bg-[var(--color-accent-hover)] sm:w-auto">
+                Quero garantir o presente dela agora →
+              </button>
+            </CampaignCheckoutLink>
             <p className="mt-3 text-sm font-medium text-[var(--color-text-muted)]">R$ 39,90 • Colar Coração de Jesus incluso • Garantia de 30 dias</p>
         </div>
       </section>

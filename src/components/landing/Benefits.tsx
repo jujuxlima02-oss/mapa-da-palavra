@@ -4,10 +4,9 @@ import React from "react";
 import Image from "next/image";
 import { CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import Link from "next/link";
+import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
 import { analytics } from "@/lib/analytics";
 import type { OfferSource } from "@/lib/constants";
-import benefitsMockup from "../../../public/assets/imagem_mapa_palavra2.jpeg";
 
 interface BenefitsProps {
   label: string;
@@ -49,7 +48,7 @@ export function Benefits({
               </ul>
               
               <div className="mt-10">
-                <Link href={`/checkout?offer=${offerSource}`}>
+                <CampaignCheckoutLink offerSource={offerSource}>
                   <Button 
                     size="lg" 
                     className="w-full px-6 sm:w-auto sm:px-6"
@@ -57,20 +56,21 @@ export function Benefits({
                   >
                     {ctaText}
                   </Button>
-                </Link>
+                </CampaignCheckoutLink>
               </div>
             </div>
             <div className="flex items-center justify-center relative">
               <div className="relative w-full h-full rounded-[var(--radius-xl,1rem)] shadow-md ring-1 ring-[var(--color-border)] aspect-[4/5] overflow-hidden bg-[var(--color-surface-2)]">
                 {/* TODO: substituir por asset final do Nanobanana — Briefing 2: Benefits evergreen // PLACEHOLDER */}
                 <Image
-                  src={benefitsMockup}
+                  src="/assets/imagem_mapa_palavra2.webp"
                   alt="Livro físico aberto mostrando páginas internas organizadas do guia visual da Bíblia"
                   width={700}
                   height={875}
                   sizes="(max-width: 1024px) 100vw, 33vw"
                   style={{ aspectRatio: "4 / 5" }}
                   className="object-cover"
+                  quality={72}
                 />
                 <div className="absolute top-0 right-0 -mt-10 -mr-10 w-40 h-40 bg-[var(--color-accent-highlight)] rounded-full opacity-50 blur-xl" />
                 <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-40 h-40 bg-[var(--color-primary-highlight)] rounded-full opacity-50 blur-xl" />

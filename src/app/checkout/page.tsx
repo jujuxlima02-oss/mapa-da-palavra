@@ -35,12 +35,13 @@ export default async function CheckoutPage({
         <div className="flex flex-col items-center justify-center mb-6">
           <div className="mb-5 w-full overflow-hidden rounded-xl border border-[var(--color-border)] shadow-sm">
             <Image
-              src="/assets/banner-checkout.jpeg"
+              src="/assets/banner-checkout.webp"
               alt={`Banner ${PRODUCT.name}`}
               width={2752}
               height={1536}
               sizes="(max-width: 768px) 100vw, 680px"
               className="w-full h-auto object-contain"
+              quality={72}
               priority
             />
           </div>

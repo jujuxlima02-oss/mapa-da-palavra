@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Button } from "@/components/ui/Button";
-import Link from "next/link";
+import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
 import { OfferSource } from "@/lib/constants";
 import { analytics } from "@/lib/analytics";
 
@@ -20,7 +20,7 @@ export function StickyCTA({ texto, botao, linhaAbaixo, offerSource }: StickyCTAP
         <h2 className="text-2xl sm:text-3xl font-bold text-[var(--color-dark-text)] mb-8 leading-snug">
           {texto}
         </h2>
-        <Link href={`/checkout?offer=${offerSource}`}>
+        <CampaignCheckoutLink offerSource={offerSource}>
           <Button 
             size="lg" 
             className="w-full px-6 sm:w-auto sm:px-10 h-16 text-lg shadow-xl shadow-black/20"
@@ -28,7 +28,7 @@ export function StickyCTA({ texto, botao, linhaAbaixo, offerSource }: StickyCTAP
           >
             {botao}
           </Button>
-        </Link>
+        </CampaignCheckoutLink>
         <p className="mt-6 text-[var(--color-accent-highlight)] text-sm sm:text-base font-medium">
           {linhaAbaixo}
         </p>

@@ -3,9 +3,8 @@
 import { useEffect } from "react";
 import Image from "next/image";
 import { analytics } from "@/lib/analytics";
-import { PRODUCT } from "@/lib/constants";
+import { PRODUCT, formatCentsToBRL } from "@/lib/constants";
 import { CheckCircle2 } from "lucide-react";
-import confirmationImage from "../../../public/assets/imagem_mapa_palavra2.jpeg"; // TODO: substituir pela imagem correta
 
 interface ConfirmationProps {
   orderId: string;
@@ -44,13 +43,14 @@ export function Confirmation({
       <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl bg-[var(--color-surface)] ring-1 ring-[var(--color-border)]">
         {/* TODO: substituir por asset final do Nanobanana — Briefing 12: Mockup comemorativo confirmação // PLACEHOLDER */}
         <Image
-          src="/assets/pagamento-confirmado.png"
+          src="/assets/pagamento-confirmado.webp"
           alt="Guia Mapa da Palavra em apresentação comemorativa de pedido confirmado"
           width={448}
           height={336}
           sizes="(max-width: 768px) 100vw, 448px"
           style={{ width: "100%", height: "auto" }}
           className="mx-auto max-w-full rounded-2xl"
+          quality={72}
         />
       </div>
       <div className="w-20 h-20 bg-[var(--color-primary-highlight)] rounded-full flex items-center justify-center mx-auto shadow-inner border border-[var(--color-border)]">
@@ -71,7 +71,7 @@ export function Confirmation({
         
         <div className="flex justify-between items-center text-sm pt-2">
           <span className="text-[var(--color-text-muted)]">Produto</span>
-          <span className="font-semibold text-[var(--color-text)] text-right">{PRODUCT.name}</span>
+          <span className="font-semibold text-[var(--color-text)] text-right">{productName}</span>
         </div>
 
         <div className="space-y-2 text-sm">
@@ -102,7 +102,7 @@ export function Confirmation({
           <span className="text-[var(--color-text-muted)]">Valor confirmado</span>
           <span className="font-bold text-[var(--color-success)] bg-[var(--color-primary-highlight)] px-2 py-0.5 rounded">
             <span className="mr-1 text-[var(--color-text-muted)] line-through">De {PRODUCT.originalPriceFormatted}</span>
-            <span>por {PRODUCT.priceFormatted}</span>
+            <span>por {formatCentsToBRL(amountCents)}</span>
           </span>
         </div>
 

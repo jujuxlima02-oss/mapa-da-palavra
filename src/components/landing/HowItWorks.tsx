@@ -3,7 +3,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import Link from "next/link";
+import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
 import { analytics } from "@/lib/analytics";
 import type { OfferSource } from "@/lib/constants";
 
@@ -92,23 +92,25 @@ export function HowItWorks({
           <div className="relative h-auto overflow-hidden rounded-2xl bg-transparent shadow-sm ring-1 ring-[var(--color-border)] sm:aspect-[4/3]">
             {/* TODO: substituir por asset final do Nanobanana — Briefing 3: How it works evergreen // PLACEHOLDER */}
             <Image
-              src="/assets/imagem_mapa_palavra1.jpeg"
+              src="/assets/imagem_mapa_palavra1.webp"
               alt="Guia aberto mostrando a estrutura de estudo visual da Bíblia com marcações e anotações"
               width={700}
               height={525}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-contain sm:object-cover w-full h-auto sm:h-full"
+              quality={72}
             />
           </div>
           <div className="relative h-auto overflow-hidden rounded-2xl bg-transparent shadow-sm ring-1 ring-[var(--color-border)] sm:aspect-[4/3]">
             {/* TODO: substituir por asset final do Nanobanana — Briefing 3: How it works evergreen // PLACEHOLDER */}
             <Image
-              src="/assets/imagem_mapa_palavra2.jpeg"
+              src="/assets/imagem_mapa_palavra2.webp"
               alt="Close de página interna do guia com o livro de Êxodo e seções destacadas"
               width={700}
               height={525}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-contain sm:object-cover w-full h-auto sm:h-full"
+              quality={72}
             />
           </div>
         </div>
@@ -159,7 +161,7 @@ export function HowItWorks({
         )}
 
         <div className="text-center">
-          <Link href={`/checkout?offer=${offerSource}`}>
+          <CampaignCheckoutLink offerSource={offerSource}>
             <Button 
               size="lg"
               className="w-full px-6 sm:w-auto sm:px-6"
@@ -167,7 +169,7 @@ export function HowItWorks({
             >
               {ctaText}
             </Button>
-          </Link>
+          </CampaignCheckoutLink>
         </div>
       </div>
     </section>

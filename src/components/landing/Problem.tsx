@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import Link from "next/link";
+import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
 import { analytics } from "@/lib/analytics";
 import type { OfferSource } from "@/lib/constants";
 
@@ -37,6 +37,7 @@ export function Problem({ label, texts, ctaText, offerSource, image }: ProblemPr
                 height={image.height}
                 loading="lazy"
                 className="object-contain sm:object-cover w-full h-auto sm:h-full"
+                quality={72}
               />
             </div>
           )}
@@ -51,7 +52,7 @@ export function Problem({ label, texts, ctaText, offerSource, image }: ProblemPr
             ))}
           </div>
           <div className="mt-8 flex justify-center">
-            <Link href={`/checkout?offer=${offerSource}`}>
+            <CampaignCheckoutLink offerSource={offerSource}>
               <Button 
                 variant="default" 
                 size="lg"
@@ -60,7 +61,7 @@ export function Problem({ label, texts, ctaText, offerSource, image }: ProblemPr
               >
                 {ctaText}
               </Button>
-            </Link>
+            </CampaignCheckoutLink>
           </div>
         </div>
       </div>

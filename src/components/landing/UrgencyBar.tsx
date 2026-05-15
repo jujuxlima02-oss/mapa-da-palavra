@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
+import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
 import { analytics } from "@/lib/analytics";
 import type { OfferSource } from "@/lib/constants";
 
@@ -19,7 +19,7 @@ export function UrgencyBar({ text, ctaText, offerSource }: UrgencyBarProps) {
           <p className="text-[var(--color-text-inverse)] font-medium text-sm sm:text-base">
             {text}
           </p>
-          <Link href={`/checkout?offer=${offerSource}`}>
+          <CampaignCheckoutLink offerSource={offerSource}>
              <button 
                 onClick={() => {
                 analytics.trackEvent("select_promotion");
@@ -30,7 +30,7 @@ export function UrgencyBar({ text, ctaText, offerSource }: UrgencyBarProps) {
              >
                 {ctaText}
              </button>
-          </Link>
+          </CampaignCheckoutLink>
         </div>
       </div>
     </div>

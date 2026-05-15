@@ -1,19 +1,24 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import { GoogleTagManager } from "@next/third-parties/google";
+import { MetaPixel } from "@/components/analytics/MetaPixel";
 import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://mapadapalavra.online"),
   title: "Mapa da Palavra | Guia Visual dos 66 Livros da Bíblia",
   description: "Mapa da Palavra é um guia visual físico para estudar os 66 livros da Bíblia com clareza, direção e constância.",
   other: {
@@ -33,6 +38,9 @@ export default function RootLayout({
     >
       <GoogleTagManager gtmId="GTM-TNRXNN47" />
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        <Suspense fallback={null}>
+          <MetaPixel />
+        </Suspense>
         {children}
       </body>
     </html>

@@ -136,7 +136,7 @@ export function BuyNotification({ page }: BuyNotificationProps) {
           <div className="relative mt-0.5 h-9 w-9 flex-none overflow-hidden rounded-md border border-[var(--color-border)] bg-[var(--color-surface)]">
             {/* TODO: substituir por asset final do Nanobanana — Briefing 4: Social proof evergreen // PLACEHOLDER */}
             <Image
-              src="/assets/imagem-produto.png"
+              src="/assets/imagem-produto.webp"
               alt="Miniatura do guia Mapa da Palavra"
               width={36}
               height={36}

@@ -24,6 +24,22 @@ const API_URL = process.env.GESTAOPAY_API_URL || "https://api.gestaopayments.com
 const PUBLIC_KEY = process.env.GESTAOPAY_PUBLIC_KEY || "";
 const SECRET_KEY = process.env.GESTAOPAY_SECRET_KEY || "";
 
+function getGatewayErrorMessage(json: unknown): string {
+  if (!json || typeof json !== "object") {
+    return "Erro sem detalhes retornados";
+  }
+
+  const errorMessages = (json as { error_messages?: unknown }).error_messages;
+
+  if (Array.isArray(errorMessages) && errorMessages.length > 0) {
+    return errorMessages
+      .filter((message): message is string => typeof message === "string")
+      .join(", ");
+  }
+
+  return "Erro sem detalhes retornados";
+}
+
 /**
  * Gera header de autenticação Basic Auth
  */
@@ -61,8 +77,11 @@ export async function createPixTransaction(
 
   // Erro de validação (400)
   if (response.status === 400) {
-    const errorMsg = json.error_messages?.join(", ") || "Dados inválidos";
-    console.error("[GestãoPay] Erro de validação:", json);
+    const errorMsg = getGatewayErrorMessage(json) || "Dados inválidos";
+    console.error("[GestãoPay] Erro de validação.", {
+      status: response.status,
+      message: errorMsg,
+    });
     throw new Error(`Erro de validação GestãoPay: ${errorMsg}`);
   }
 
@@ -73,7 +92,10 @@ export async function createPixTransaction(
   }
 
   // Erro genérico da API ou do servidor
-  console.error("[GestãoPay] Erro inesperado:", response.status, json);
+  console.error("[GestãoPay] Erro inesperado.", {
+    status: response.status,
+    message: getGatewayErrorMessage(json),
+  });
   throw new Error(`Erro no gateway de pagamento (${response.status})`);
 }
 
@@ -106,7 +128,10 @@ export async function getTransaction(
     return json as GestaoPayGetResponse;
   }
 
-  console.error("[GestãoPay] Erro ao buscar transação:", response.status, json);
+  console.error("[GestãoPay] Erro ao buscar transação.", {
+    status: response.status,
+    message: getGatewayErrorMessage(json),
+  });
   throw new Error(`Erro ao consultar transação (${response.status})`);
 }
 

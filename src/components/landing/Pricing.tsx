@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
 import { PRODUCT, OfferSource } from "@/lib/constants";
 import { analytics } from "@/lib/analytics";
-import mothersPricingImage from "../../../public/assets/imagem_mapa_palavra2.jpeg"; // TODO: substituir pela imagem correta
+import { buildCheckoutHref } from "@/lib/campaignParams";
 
 interface PricingProps {
   label: string;
@@ -24,12 +24,12 @@ export function Pricing({
 }: PricingProps) {
   const router = useRouter();
   const pricingImage =
-    offerSource === "dia-das-maes" ? mothersPricingImage : "/assets/imagem_mapa_palavra5.png";
+    offerSource === "dia-das-maes" ? "/assets/imagem_mapa_palavra2.webp" : "/assets/imagem_mapa_palavra5.webp";
 
   const handleCheckout = (e?: React.FormEvent) => {
     e?.preventDefault();
     analytics.ctaClick(offerSource, "pricing_section");
-    router.push(`/checkout?offer=${offerSource}`);
+    router.push(buildCheckoutHref(offerSource, window.location.search));
   };
 
   return (
@@ -47,6 +47,7 @@ export function Pricing({
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 style={offerSource === "dia-das-maes" ? { aspectRatio: "4 / 3" } : undefined}
                 className={offerSource === "dia-das-maes" ? "object-contain p-4" : "object-contain sm:object-cover w-full h-auto sm:h-full"}
+                quality={72}
               />
             </div>
             <p className="text-sm font-bold uppercase tracking-widest text-[var(--color-accent)] text-center mb-2">

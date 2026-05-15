@@ -19,7 +19,7 @@ import {
   validateCheckoutForm
 } from "@/lib/validations";
 import { analytics } from "@/lib/analytics";
-import { PRODUCT, type ShippingMode } from "@/lib/constants";
+import { PRODUCT, SHIPPING, formatCentsToBRL, type ShippingMode } from "@/lib/constants";
 
 interface CheckoutFormProps {
   offerSource: string;
@@ -46,7 +46,8 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
   const [isLoadingCep, setIsLoadingCep] = useState(false);
   const [showCoupon, setShowCoupon] = useState(false);
   const [estadoQuery, setEstadoQuery] = useState("");
-  const shippingPrice = shippingMode === "express" ? 1590 : 0;
+  const shippingPrice = SHIPPING[shippingMode].price;
+  const totalCents = PRODUCT.priceCents + shippingPrice;
   const estadoInputRef = useRef<HTMLInputElement | null>(null);
 
   const estados = [
@@ -201,6 +202,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
     }
 
     setIsSubmitting(true);
+    analytics.lead(offerSource, totalCents);
 
     try {
       const response = await fetch("/api/checkout", {
@@ -228,7 +230,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
       if (response.status === 201 && data.orderId) {
         // Sucesso: limpar os campos envia sinal visual sem acionar abandoned
         setFormData({ name: "", email: "", phone: "", cpf: "", cep: "", rua: "", numero: "", complemento: "", cidade: "", estado: "" });
-        router.push(`/checkout/pix/${data.orderId}`);
+        router.push(`/checkout/pix/${data.orderId}${window.location.search}`);
         return; // Retornar evita o "finally" dar flicker enquanto faz a navegação Next.js
       }
 
@@ -586,7 +588,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
             Processando...
           </span>
         ) : (
-          "Garantir meu Diário por R$ 49,90"
+          `Garantir meu Diário por ${formatCentsToBRL(totalCents)}`
         )}
       </Button>
 

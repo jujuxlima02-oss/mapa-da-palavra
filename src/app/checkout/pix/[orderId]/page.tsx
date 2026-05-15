@@ -2,13 +2,17 @@ import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
 import { PixPayment } from "@/components/checkout/PixPayment";
 import { SHIPPING, type ShippingMode } from "@/lib/constants";
+import { buildCheckoutHref } from "@/lib/campaignParams";
 
 export default async function PixCheckoutPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ orderId: string }>
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
 }) {
   const unwrappedParams = await params;
+  const unwrappedSearchParams = await searchParams;
   const orderId = unwrappedParams.orderId;
 
   if (!orderId) {
@@ -32,6 +36,17 @@ export default async function PixCheckoutPage({
   const { pixCopyPaste, pixExpiresAt, offerSource, shippingMode } = order;
   const normalizedShippingMode: ShippingMode = shippingMode === "express" ? "express" : "free";
   const shippingDeadline = SHIPPING[normalizedShippingMode].days;
+  const retrySearchParams = new URLSearchParams();
+
+  Object.entries(unwrappedSearchParams).forEach(([key, value]) => {
+    if (typeof value === "string") {
+      retrySearchParams.set(key, value);
+    } else if (Array.isArray(value) && value[0]) {
+      retrySearchParams.set(key, value[0]);
+    }
+  });
+
+  const retryHref = buildCheckoutHref(offerSource || "evergreen", retrySearchParams);
 
   // Em caso de corrupção de sincronia, onde a API não retornou copy-paste 
   if (!pixCopyPaste || !pixExpiresAt) {
@@ -45,7 +60,7 @@ export default async function PixCheckoutPage({
           </div>
           <h2 className="text-xl font-bold text-[var(--color-text)] mb-2">Não foi possível gerar seu PIX.</h2>
           <p className="text-sm text-[var(--color-text-muted)] mb-6 font-medium">Revise os dados e tente novamente.</p>
-          <a href={`/checkout?offer=${offerSource || "evergreen"}`} className="block w-full bg-[var(--color-primary)] text-[var(--color-text-inverse)] font-bold py-3 rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors">
+          <a href={retryHref} className="block w-full bg-[var(--color-primary)] text-[var(--color-text-inverse)] font-bold py-3 rounded-lg hover:bg-[var(--color-primary-hover)] transition-colors">
             TENTAR NOVAMENTE
           </a>
         </div>
@@ -60,6 +75,7 @@ export default async function PixCheckoutPage({
         orderId={order.id}
         pixCopyPaste={pixCopyPaste}
         pixExpiresAt={pixExpiresAt}
+        amountCents={order.amountCents}
         offerSource={offerSource}
         shippingDeadline={shippingDeadline}
         isAlreadyExpired={false}
