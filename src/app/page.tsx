@@ -7,11 +7,26 @@ import { FAQ } from "@/components/landing/FAQ";
 import { Footer } from "@/components/landing/Footer";
 import { BuyNotification } from "@/components/landing/BuyNotification";
 import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink";
-import { DIGITAL_GIFTS, PRODUCT, SHIPPING } from "@/lib/constants";
+import { ProductCarousel } from "@/components/landing/ProductCarousel";
+import { DIGITAL_GIFTS, PRODUCT } from "@/lib/constants";
 import { featureFlags } from "@/lib/featureFlags";
 
 const productName = PRODUCT.name;
 const productShortName = "Mapa da Palavra";
+const giftImages: Record<string, { src: string; alt: string }> = {
+  "66 Cards Mapa da Palavra": {
+    src: "/assets/imagem_mapa_palavra1.webp",
+    alt: "Material de apoio com cards do Mapa da Palavra para acompanhar a leitura bíblica",
+  },
+  "Diário de Fé Mapa da Palavra": {
+    src: "/assets/imagem_mapa_palavra2.webp",
+    alt: "Material de apoio Diário de Fé Mapa da Palavra para registros devocionais",
+  },
+  "Guia de Estudo em 30 Dias": {
+    src: "/assets/imagem_mapa_palavra5.webp",
+    alt: "Material de apoio Guia de Estudo em 30 Dias para rotina de leitura bíblica",
+  },
+};
 
 export const metadata: Metadata = {
   title: `${productName} | Guia físico para sua leitura bíblica`,
@@ -89,21 +104,21 @@ export default function EvergreenPage() {
               Salmos 119:105
             </p>
             <h1 className="text-4xl font-extrabold tracking-tight text-[var(--color-dark-text)] sm:text-5xl lg:text-6xl">
-              Você não está perdido por falta de fé. Você precisa de um mapa para guiar sua leitura bíblica.
+              Um guia físico para ajudar você a voltar ao seu tempo com Deus com clareza e constância.
             </h1>
             <div className="mt-6 space-y-4 text-lg leading-8 text-[var(--color-dark-text)]/80">
               <p>
-                O {productShortName} é um guia físico para organizar sua leitura, orientar sua reflexão e abrir espaço para registrar o que Deus está tratando no seu coração.
-              </p>
-              <p>
-                É uma forma simples de transformar intenção em rotina: Bíblia aberta, mapa nas mãos, caneta, oração e constância.
+                O Mapa da Palavra foi pensado para acompanhar sua leitura bíblica, sua oração e seus registros devocionais de forma simples, prática e possível para a vida real.
               </p>
             </div>
             <div className="mt-8 space-y-5">
               <PriceLine inverse />
               <CheckoutLink variant="light">
-                Quero meu Mapa da Palavra
+                Quero começar meu tempo com Deus
               </CheckoutLink>
+              <p className="text-sm font-medium text-[var(--color-dark-text)]/70">
+                Separe um tempo. Abra a Palavra. Registre o que Deus ministrar ao seu coração.
+              </p>
             </div>
           </div>
           <div className="lg:pl-6">
@@ -130,14 +145,20 @@ export default function EvergreenPage() {
             Oséias 4:6
           </p>
           <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-            Chega de aceitar uma vida devocional rasa como se isso fosse normal.
+            Benefícios para sua vida devocional
           </h2>
           <div className="mt-8 space-y-6 text-lg leading-8 text-[var(--color-dark-text)]/80">
             <p>
-              Você vive cercado de mensagens, cortes de pregação, frases bonitas e versículos soltos. Mas quando chega a hora de sentar sozinho com a Bíblia aberta, o silêncio denuncia uma verdade: falta estrutura.
+              Organiza sua rotina devocional sem deixar tudo pesado ou complicado.
             </p>
             <p>
-              Não aceite a mentira de que essa distância de Deus é definitiva. Também não transforme sua culpa em identidade. Existe uma dispersão diária tentando roubar sua atenção, sua constância e sua profundidade.
+              Ajuda você a ler a Bíblia com mais direção e menos dispersão.
+            </p>
+            <p>
+              Cria espaço para oração, reflexão e registro do que foi ministrado ao coração.
+            </p>
+            <p>
+              Favorece constância para quem deseja caminhar com mais presença no dia a dia.
             </p>
           </div>
         </div>
@@ -145,54 +166,90 @@ export default function EvergreenPage() {
 
       <section className="bg-[var(--color-surface)] py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
+          <div className="mx-auto flex max-w-3xl flex-col items-center text-center">
             <p className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">
               Habacuque 2:2
             </p>
             <h2 className="text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl">
-              Quando a fé ganha página, data e registro, a caminhada deixa de depender da memória.
+              Como funciona
             </h2>
-            <div className="mt-8 space-y-5 text-lg leading-8 text-[var(--color-text-muted)]">
-              <p>
-                O {productShortName} organiza sua jornada diária pela Bíblia com mapas temáticos, reflexões orientadas e espaço para registro pessoal. Você lê, medita, responde, anota, revisita e acompanha o que Deus está formando em você.
+            <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-5 text-center text-lg leading-8 text-[var(--color-text-muted)]">
+              <p className="max-w-xl">
+                1. Abra o guia e siga a proposta do momento devocional.
               </p>
-              <p>
-                Cada página se torna um marco. Cada anotação, um memorial. Cada dia, uma resposta prática ao chamado de Deus.
+              <p className="max-w-xl">
+                2. Leia, ore e registre aquilo que mais falou com você.
+              </p>
+              <p className="max-w-xl">
+                3. Retorne no dia seguinte e continue sua jornada com mais clareza e direção.
               </p>
             </div>
           </div>
 
+          <ProductCarousel />
+
+          <div className="mx-auto mt-16 max-w-3xl text-center">
+            <p className="mb-5 text-sm font-bold uppercase tracking-[0.2em] text-[var(--color-accent)]">
+              Conteúdos inclusos
+            </p>
+            <h2 className="text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl">
+              Você também recebe 3 materiais para acompanhar sua rotina
+            </h2>
+            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-[var(--color-text-muted)]">
+              Recursos pensados para ajudar você a meditar, registrar e seguir sua leitura com mais clareza e constância.
+            </p>
+          </div>
+
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {DIGITAL_GIFTS.map((gift) => (
-              <article
-                key={gift.name}
-                className="rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] p-6 shadow-sm"
-              >
-                <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
-                  Brinde digital
-                </p>
-                <h3 className="mt-3 text-xl font-black text-[var(--color-text)]">
-                  {gift.name}
-                </h3>
-                <p className="mt-4 text-base leading-7 text-[var(--color-text-muted)]">
-                  {gift.description}
-                </p>
-              </article>
-            ))}
+            {DIGITAL_GIFTS.map((gift) => {
+              const giftImage = giftImages[gift.name];
+
+              return (
+                <article
+                  key={gift.name}
+                  className="overflow-hidden rounded-xl border border-[var(--color-border)] bg-[var(--color-surface-2)] shadow-sm"
+                >
+                  {giftImage && (
+                    <div className="relative aspect-[4/3] w-full overflow-hidden bg-[var(--color-surface)]">
+                      <Image
+                        src={giftImage.src}
+                        alt={giftImage.alt}
+                        width={700}
+                        height={525}
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                        className="h-full w-full object-cover"
+                        quality={75}
+                      />
+                    </div>
+                  )}
+                  <div className="p-6">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
+                      Incluso no seu pedido
+                    </p>
+                    <h3 className="mt-3 text-xl font-black text-[var(--color-text)]">
+                      {gift.name}
+                    </h3>
+                    <p className="mt-4 text-base leading-7 text-[var(--color-text-muted)]">
+                      {gift.description}
+                    </p>
+                  </div>
+                </article>
+              );
+            })}
           </div>
 
           <div className="mt-12 text-center">
             <PriceLine />
             <div className="mt-5">
-              <CheckoutLink>Quero começar com o Mapa da Palavra</CheckoutLink>
+              <CheckoutLink>Quero começar meu tempo com Deus</CheckoutLink>
             </div>
           </div>
         </div>
       </section>
 
       <SocialProof
-        label="Testemunhos"
-        template={`Pessoas reais avaliando sua jornada com ${productShortName}.`}
+        label="Histórias reais"
+        template="Conversas reais de pessoas que retomaram sua rotina com mais direção, constância e presença na Palavra."
       />
 
       <section className="bg-[var(--color-bg)] py-24">
@@ -224,14 +281,13 @@ export default function EvergreenPage() {
                     <strong className="text-[var(--color-text)]">{productName}</strong>: produto principal para organizar sua jornada diária pela Palavra.
                   </span>
                 </li>
-                {DIGITAL_GIFTS.map((gift) => (
-                  <li key={gift.name} className="flex gap-3">
-                    <span className="font-black text-[var(--color-success)]">✓</span>
-                    <span>
-                      <strong className="text-[var(--color-text)]">{gift.name}</strong>: {gift.description}
-                    </span>
-                  </li>
-                ))}
+                <li className="flex gap-3">
+                  <span className="font-black text-[var(--color-success)]">✓</span>
+                  <span>
+                    Seu pedido inclui o Mapa da Palavra e 3 materiais de apoio:{" "}
+                    {DIGITAL_GIFTS.map((gift) => gift.name).join(", ")}.
+                  </span>
+                </li>
               </ul>
             </div>
 
@@ -251,19 +307,19 @@ export default function EvergreenPage() {
             Efésios 5:15-16
           </p>
           <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-            Quantos dias mais você vai chamar de “depois” aquilo que Deus está chamando de hoje?
+            Comece sua rotina devocional com mais clareza, presença e constância.
           </h2>
           <div className="mt-8 space-y-5 text-lg leading-8 text-[var(--color-dark-text)]/80">
             <p>
-              Você sabe que precisa voltar. Sabe que a Bíblia fechada pesa. Sabe que sua alma sente falta de direção. Mas a rotina empurra, o celular captura, o cansaço vence, e mais uma semana passa.
+              Separe um tempo possível, abra a Palavra e registre aquilo que Deus ministrar ao seu coração.
             </p>
             <p>
-              O {productShortName} é o convite para sair do ciclo de culpa e entrar no caminho da constância. Não pela força do grito. Não por pressão vazia. Mas por uma decisão clara: separar tempo, abrir a Palavra, escrever, orar e continuar.
+              O Mapa da Palavra acompanha esse momento com uma estrutura simples para você continuar no seu ritmo.
             </p>
           </div>
           <div className="mt-10 space-y-5">
             <PriceLine inverse />
-            <CheckoutLink variant="light">Começar minha jornada com o Mapa da Palavra</CheckoutLink>
+            <CheckoutLink variant="light">Começar minha rotina devocional</CheckoutLink>
           </div>
         </div>
       </section>
@@ -277,12 +333,10 @@ export default function EvergreenPage() {
       <FAQ
         label="Perguntas frequentes"
         questions={[
-          { question: "O que é o Mapa da Palavra?", answer: `O ${productShortName} é um guia físico para organizar leitura bíblica, reflexão e registro pessoal.` },
-          { question: "Recebo brindes digitais?", answer: "Sim. Os brindes digitais são liberados imediatamente após a confirmação do pagamento." },
-          { question: "Preciso já conhecer bem a Bíblia?", answer: "Não. O material foi pensado para quem quer começar com direção e constância." },
-          { question: "O produto principal é físico?", answer: "Sim. Você recebe o produto principal no endereço informado no checkout." },
-          { question: "Qual o prazo de entrega?", answer: `Correios: ${SHIPPING.free.days}. Expresso: ${SHIPPING.express.days}. O prazo final aparece no checkout conforme a modalidade escolhida.` },
-          { question: "Tem garantia?", answer: "Sim, você conta com garantia de 30 dias." },
+          { question: "O que é o Mapa da Palavra?", answer: "É um guia físico para apoiar sua leitura bíblica, oração e registros devocionais." },
+          { question: "Para quem ele foi pensado?", answer: "Para quem deseja cultivar uma rotina com Deus de forma mais simples, organizada e constante." },
+          { question: "Preciso já ter hábito devocional?", answer: "Não. Ele pode ajudar tanto quem está começando quanto quem deseja retomar a constância." },
+          { question: "Como ele pode me ajudar na prática?", answer: "Ele oferece uma estrutura simples para você não depender apenas da disposição do dia para buscar a Deus." },
         ]}
         supportLinkText="Falar com atendimento"
       />
