@@ -44,7 +44,6 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isLoadingCep, setIsLoadingCep] = useState(false);
-  const [showCoupon, setShowCoupon] = useState(false);
   const [estadoQuery, setEstadoQuery] = useState("");
   const shippingPrice = SHIPPING[shippingMode].price;
   const totalCents = PRODUCT.priceCents + shippingPrice;
@@ -246,16 +245,6 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
       setIsSubmitting(false);
     }
   };
-  const [couponCode, setCouponCode] = useState("")
-  const [couponMessage, setCouponMessage] = useState("")
-  const [couponValid, setCouponValid] = useState(false)
-
-  const handleApplyCoupon = () => {
-    if (!couponCode.trim()) return
-    setCouponMessage("Cupom inválido ou expirado.")
-    setCouponValid(false)
-  }
-
   return (
     <form onSubmit={handleSubmit} className="w-full">
       <div className="mb-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] p-6">
@@ -322,45 +311,6 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
             />
             <p className="mt-1 text-xs text-[var(--color-text-muted)]">Necessário para emissão de nota fiscal</p>
           </div>
-      
-        <button
-          type="button"
-          onClick={() => setShowCoupon((value) => !value)}
-          className="mt-6 text-sm font-semibold text-[var(--color-primary)] hover:text-[var(--color-primary-hover)]"
-        >
-          Tenho um cupom de desconto
-        </button>
-
-        {showCoupon && (
-          <div className="space-y-1 mt-4">
-            <label className="text-sm font-medium text-[var(--color-text)]">
-              Cupom de desconto <span className="text-[var(--color-text-faint)]">(opcional)</span>
-            </label>
-            <div className="flex gap-2 mt-1">
-              <input
-                type="text"
-                placeholder="Se tiver um cupom"
-                value={couponCode}
-                onChange={(e) => setCouponCode(e.target.value.toUpperCase())}
-                className="flex-1 h-12 border border-[var(--color-border)] rounded-md px-3 text-[15px] focus:border-[var(--color-primary)] focus:outline-none focus:shadow-[0_0_0_2px_rgba(139,94,42,0.2)] transition-all bg-[var(--color-surface-2)] text-[var(--color-text)]"
-                disabled={isSubmitting}
-              />
-              <button
-                type="button"
-                onClick={handleApplyCoupon}
-                className="h-12 px-6 bg-[var(--color-surface)] hover:bg-[var(--color-surface-offset)] border border-[var(--color-border)] rounded-md text-sm font-medium text-[var(--color-text)] transition-colors whitespace-nowrap"
-                disabled={isSubmitting}
-              >
-                Aplicar
-              </button>
-            </div>
-            {couponMessage && (
-              <p className={`text-xs mt-1 font-medium ${couponValid ? 'text-[var(--color-success)]' : 'text-[var(--color-error)]'}`}>
-                {couponMessage}
-              </p>
-            )}
-          </div>
-        )}
       </div>
 
       <div className="mb-6 rounded-2xl bg-[var(--color-surface)] border border-[var(--color-border)] p-6">
@@ -530,7 +480,6 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
               </span>
             </span>
             <span className="flex flex-shrink-0 items-center gap-2 text-right text-sm font-semibold text-[var(--color-success)]">
-              <span aria-hidden="true">$</span>
               R$ 0,00
             </span>
           </button>
@@ -588,7 +537,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
             Processando...
           </span>
         ) : (
-          `Garantir meu Diário por ${formatCentsToBRL(totalCents)}`
+          `Garantir meu Mapa da Palavra por ${formatCentsToBRL(totalCents)}`
         )}
       </Button>
 

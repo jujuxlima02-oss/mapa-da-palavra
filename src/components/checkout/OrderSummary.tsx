@@ -2,11 +2,10 @@ import Image from "next/image";
 import { DIGITAL_GIFTS, PRODUCT, SHIPPING, formatCentsToBRL, type ShippingMode } from "@/lib/constants";
 
 interface OrderSummaryProps {
-  offerSource: string;
   shippingMode: ShippingMode;
 }
 
-export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
+export function OrderSummary({ shippingMode }: OrderSummaryProps) {
   const shipping = SHIPPING[shippingMode];
   const shippingTotal = shipping.price > 0 ? shipping.price : 0;
   const shippingDeadline =
@@ -57,14 +56,6 @@ export function OrderSummary({ offerSource, shippingMode }: OrderSummaryProps) {
         </div>
         <span className="pt-0.5 font-semibold text-[var(--color-success)]">Grátis</span>
       </div>
-      
-      {offerSource === "dia-das-maes" && (
-        <div className="flex justify-between items-center text-[var(--color-primary)] font-bold text-xs bg-[var(--color-primary-highlight)] px-3 py-2 rounded border border-[var(--color-border)]">
-          <span className="flex items-center gap-1.5">🎁 Oferta especial (Mães)</span>
-          <span>BÔNUS INCLUSO</span>
-        </div>
-      )}
-
       <div className="flex items-center justify-between border-t border-[var(--color-divider)] pt-3">
         <span className="text-sm font-medium text-[var(--color-text)]">Frete</span>
         <span className={`text-sm font-semibold ${shipping.price === 0 ? "text-[var(--color-success)]" : "text-[var(--color-text)]"}`}>

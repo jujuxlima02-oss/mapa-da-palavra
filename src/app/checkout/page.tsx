@@ -8,7 +8,7 @@ import { CheckoutCountdownBar } from "@/components/checkout/CheckoutCountdownBar
 import { Lock } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Finalizar pedido — Diário Bíblico: Mapa da Palavra",
+  title: "Finalizar pedido — Mapa da Palavra",
   description: "Complete seu pedido e garanta sua jornada diária com a Palavra de Deus.",
 };
 
@@ -47,7 +47,7 @@ export default async function CheckoutPage({
               height={1536}
               sizes="(max-width: 768px) 100vw, 680px"
               className="w-full h-auto object-contain"
-              quality={72}
+              quality={75}
               priority
             />
           </div>

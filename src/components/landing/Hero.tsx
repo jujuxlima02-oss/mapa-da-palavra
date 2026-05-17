@@ -23,16 +23,9 @@ export function Hero({
   supportLine,
   offerSource,
 }: HeroProps) {
-  const heroImage =
-    offerSource === "dia-das-maes" ? "/assets/imagem_mapa_palavra5.webp" : "/assets/imagem_mapa_palavra4.webp";
-  const headlineClasses =
-    offerSource === "dia-das-maes"
-      ? "text-2xl font-extrabold tracking-tight sm:text-3xl lg:text-3xl"
-      : "text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl";
-  const subheadlineClasses =
-    offerSource === "dia-das-maes"
-      ? "mt-6 text-lg leading-8"
-      : "mt-6 text-lg leading-8";
+  const heroImage = "/assets/imagem_mapa_palavra4.webp";
+  const headlineClasses = "text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl";
+  const subheadlineClasses = "mt-6 text-lg leading-8";
 
   return (
     <section className="relative overflow-hidden bg-[var(--color-dark-section)] pt-16 pb-20 lg:pt-24 lg:pb-28">
@@ -71,7 +64,7 @@ export function Hero({
               height={576}
               sizes="(max-width: 1024px) 100vw, 1024px"
               className="object-contain w-full h-auto"
-              quality={72}
+              quality={75}
               preload
             />
             {/* Decoração da borda */}

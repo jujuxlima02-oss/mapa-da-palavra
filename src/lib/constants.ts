@@ -1,19 +1,26 @@
 /**
- * Constantes do projeto — Diário Bíblico — Mapa da Palavra
+ * Constantes do projeto — Mapa da Palavra
  * 
  * Centraliza valores do produto, status e ofertas.
  * Todos os preços são em centavos para evitar problemas de ponto flutuante.
  */
 
+const configuredProductName = process.env.NEXT_PUBLIC_PRODUCT_NAME;
+const normalizedProductName =
+  configuredProductName === "Diário Bíblico - Mapa da Palavra" ||
+  configuredProductName === "Diário Bíblico — Mapa da Palavra"
+    ? "Mapa da Palavra"
+    : configuredProductName || "Mapa da Palavra";
+
 export const PRODUCT = {
-  name: process.env.NEXT_PUBLIC_PRODUCT_NAME || "Diário Bíblico — Mapa da Palavra",
+  name: normalizedProductName,
   priceCents: Number(process.env.NEXT_PUBLIC_PRODUCT_PRICE_CENTS) || 4990,
   get priceFormatted(): string {
     return formatCentsToBRL(this.priceCents);
   },
   originalPriceCents: 8990,
   originalPriceFormatted: "R$ 89,90",
-  description: "Diário devocional bíblico estruturado com mapas temáticos, reflexões orientadas e espaço para registro pessoal",
+  description: "Guia físico para leitura bíblica com mapas temáticos, reflexões orientadas e espaço para registro pessoal",
   pixExpiresInDays: 1,
 } as const;
 
@@ -34,12 +41,6 @@ export const DIGITAL_GIFTS = [
     access: "digital-immediate",
   },
 ] as const;
-
-export const BUNDLE_ITEM = {
-  name: "Colar Coração de Jesus",
-  description: "Brinde físico exclusivo da oferta de Dia das Mães",
-  type: "physical",
-} as const;
 
 export const SHIPPING = {
   free: {
@@ -64,7 +65,7 @@ export const OFFER_SOURCES = {
 
 export type OfferSource = (typeof OFFER_SOURCES)[keyof typeof OFFER_SOURCES];
 
-export const VALID_OFFER_SOURCES: string[] = Object.values(OFFER_SOURCES);
+export const VALID_OFFER_SOURCES: string[] = [OFFER_SOURCES.EVERGREEN];
 
 export const ORDER_STATUS = {
   PENDING: "PENDING",
@@ -83,7 +84,7 @@ export const FINAL_STATUSES: string[] = [
 ];
 
 /**
- * Converte centavos para formato BRL (ex: 3990 → "R$ 39,90")
+ * Converte centavos para formato BRL (ex: 4990 → "R$ 49,90")
  */
 export function formatCentsToBRL(cents: number): string {
   return new Intl.NumberFormat("pt-BR", {

@@ -1,4 +1,0 @@
-[n8n.put_sanitizacao]
-campos_permitidos = ["name", "nodes", "connections", "settings", "staticData", "pinData"]
-settings_permitido = '{"executionOrder": "v1"}'
-campos_proibidos = ["shared", "tags", "active", "id", "versionId", "meta", "updatedAt", "createdAt", "activeVersion"]

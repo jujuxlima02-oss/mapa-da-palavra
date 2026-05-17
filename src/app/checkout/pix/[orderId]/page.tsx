@@ -36,6 +36,8 @@ export default async function PixCheckoutPage({
   const { pixCopyPaste, pixExpiresAt, offerSource, shippingMode } = order;
   const normalizedShippingMode: ShippingMode = shippingMode === "express" ? "express" : "free";
   const shippingDeadline = SHIPPING[normalizedShippingMode].days;
+  const initialStatus: "PENDING" | "EXPIRED" | "ERROR" =
+    order.status === "EXPIRED" || order.status === "ERROR" ? order.status : "PENDING";
   const retrySearchParams = new URLSearchParams();
 
   Object.entries(unwrappedSearchParams).forEach(([key, value]) => {
@@ -78,6 +80,7 @@ export default async function PixCheckoutPage({
         amountCents={order.amountCents}
         offerSource={offerSource}
         shippingDeadline={shippingDeadline}
+        initialStatus={initialStatus}
         isAlreadyExpired={false}
       />
     </div>

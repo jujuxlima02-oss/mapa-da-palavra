@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
 import { useRouter } from "next/navigation";
-import { PRODUCT, OfferSource } from "@/lib/constants";
+import { DIGITAL_GIFTS, PRODUCT, OfferSource } from "@/lib/constants";
 import { analytics } from "@/lib/analytics";
 import { buildCheckoutHref } from "@/lib/campaignParams";
 
@@ -23,8 +23,8 @@ export function Pricing({
   offerSource,
 }: PricingProps) {
   const router = useRouter();
-  const pricingImage =
-    offerSource === "dia-das-maes" ? "/assets/imagem_mapa_palavra2.webp" : "/assets/imagem_mapa_palavra5.webp";
+  const pricingImage = "/assets/imagem_mapa_palavra5.webp";
+  const discountPercent = Math.round((1 - PRODUCT.priceCents / PRODUCT.originalPriceCents) * 100);
 
   const handleCheckout = (e?: React.FormEvent) => {
     e?.preventDefault();
@@ -45,9 +45,8 @@ export function Pricing({
                 width={700}
                 height={525}
                 sizes="(max-width: 1024px) 100vw, 50vw"
-                style={offerSource === "dia-das-maes" ? { aspectRatio: "4 / 3" } : undefined}
-                className={offerSource === "dia-das-maes" ? "object-contain p-4" : "object-contain sm:object-cover w-full h-auto sm:h-full"}
-                quality={72}
+                className="object-contain sm:object-cover w-full h-auto sm:h-full"
+                quality={75}
               />
             </div>
             <p className="text-sm font-bold uppercase tracking-widest text-[var(--color-accent)] text-center mb-2">
@@ -71,10 +70,10 @@ export function Pricing({
               })}
             </div>
             <div className="mt-6 text-sm text-[var(--color-text-muted)] border border-[var(--color-border)] rounded-xl p-4 bg-[var(--color-surface-2)]">
-              <p className="font-medium mb-2">🎁 Bônus inclusos:</p>
-              <p>• 66 Cards de Versículos</p>
-              <p>• Diário de Fé</p>
-              <p>• Guia de Estudo em 30 Dias</p>
+              <p className="font-medium mb-2">Bônus inclusos:</p>
+              {DIGITAL_GIFTS.map((gift) => (
+                <p key={gift.name}>• {gift.name}</p>
+              ))}
             </div>
             
           </div>
@@ -88,7 +87,7 @@ export function Pricing({
                 <p className="mt-6 flex flex-col items-center justify-center gap-2 sm:flex-row sm:items-baseline sm:gap-x-2">
                   <span className="text-5xl font-bold tracking-tight text-[var(--color-text)]">{PRODUCT.priceFormatted}</span>
                   <span className="bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full sm:ml-2">
-                    {Math.round((1 - 4990 / 8999) * 100)}% OFF
+                    {discountPercent}% OFF
                   </span>
                 </p>
                 <Button 

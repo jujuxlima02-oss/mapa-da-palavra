@@ -98,7 +98,7 @@ export function HowItWorks({
               height={525}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-contain sm:object-cover w-full h-auto sm:h-full"
-              quality={72}
+              quality={75}
             />
           </div>
           <div className="relative h-auto overflow-hidden rounded-2xl bg-transparent shadow-sm ring-1 ring-[var(--color-border)] sm:aspect-[4/3]">
@@ -110,7 +110,7 @@ export function HowItWorks({
               height={525}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-contain sm:object-cover w-full h-auto sm:h-full"
-              quality={72}
+              quality={75}
             />
           </div>
         </div>

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { QRCodeSVG } from "qrcode.react";
 import Image from "next/image";
-import { Copy, RefreshCw, CheckCircle2 } from "lucide-react";
+import { AlertTriangle, Copy, RefreshCw, CheckCircle2 } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { Timer } from "@/components/ui/Timer";
 import { analytics } from "@/lib/analytics";
@@ -18,6 +18,7 @@ interface PixPaymentProps {
   amountCents: number;
   offerSource: string;
   shippingDeadline: string;
+  initialStatus?: "PENDING" | "PAID" | "EXPIRED" | "ERROR";
   isAlreadyExpired?: boolean;
 }
 
@@ -28,22 +29,25 @@ export function PixPayment({
   amountCents,
   offerSource,
   shippingDeadline,
+  initialStatus,
   isAlreadyExpired = false,
 }: PixPaymentProps) {
   const router = useRouter();
   const [copied, setCopied] = useState(false);
-  const [isExpired, setIsExpired] = useState(isAlreadyExpired);
+  const [paymentStatus, setPaymentStatus] = useState(
+    initialStatus ?? (isAlreadyExpired ? "EXPIRED" : "PENDING")
+  );
 
   useEffect(() => {
     // GA4 Event - PIX gerado (apenas se for um PIX fresco)
-    if (!isAlreadyExpired) {
+    if (paymentStatus === "PENDING") {
       analytics.pixGenerated(offerSource, orderId, amountCents);
     }
-  }, [offerSource, orderId, amountCents, isAlreadyExpired]);
+  }, [offerSource, orderId, amountCents, paymentStatus]);
 
   // Polling mechanism (Tarefa 18)
   useEffect(() => {
-    if (isExpired) return;
+    if (paymentStatus !== "PENDING") return;
 
     const checkOrderStatus = async () => {
       try {
@@ -57,7 +61,9 @@ export function PixPayment({
           router.push(`/checkout/confirmacao/${orderId}`);
         } else if (data.status === "EXPIRED") {
            // Reflete API webhook (remoto) de que o pagamento já venceu
-          setIsExpired(true);
+          setPaymentStatus("EXPIRED");
+        } else if (data.status === "ERROR") {
+          setPaymentStatus("ERROR");
         }
       } catch (err) {
         console.error("Erro no polling de pagamento", err);
@@ -67,7 +73,7 @@ export function PixPayment({
     const intervalId = setInterval(checkOrderStatus, 5000);
 
     return () => clearInterval(intervalId);
-  }, [orderId, isExpired, router]);
+  }, [orderId, paymentStatus, router]);
 
   const handleCopy = async () => {
     try {
@@ -84,32 +90,42 @@ export function PixPayment({
   };
 
   const handleExpired = () => {
-    setIsExpired(true);
+    setPaymentStatus("EXPIRED");
   };
 
   const retryCheckout = () => {
     router.push(buildCheckoutHref(offerSource, window.location.search));
   };
 
-  if (isExpired) {
+  if (paymentStatus === "EXPIRED" || paymentStatus === "ERROR") {
+    const isError = paymentStatus === "ERROR";
+
     return (
       <div className="bg-[var(--color-surface-2)] rounded-xl shadow-sm border border-[var(--color-error)]/20 p-8 text-center space-y-6 max-w-lg w-full mx-auto">
         <div className="w-16 h-16 bg-[var(--color-error)]/10 rounded-full flex items-center justify-center mx-auto">
-          <svg className="w-8 h-8 text-[var(--color-error)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-          </svg>
+          {isError ? (
+            <AlertTriangle className="w-8 h-8 text-[var(--color-error)]" />
+          ) : (
+            <svg className="w-8 h-8 text-[var(--color-error)]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          )}
         </div>
         
         <div>
-          <h2 className="text-2xl font-bold text-[var(--color-text)]">PIX expirado</h2>
+          <h2 className="text-2xl font-bold text-[var(--color-text)]">
+            {isError ? "Não foi possível confirmar este PIX" : "PIX expirado"}
+          </h2>
           <p className="text-[var(--color-text-muted)] mt-2">
-            O prazo terminou. Gere um novo PIX para continuar sua compra com segurança.
+            {isError
+              ? "A tentativa de pagamento falhou. Gere um novo PIX para continuar com segurança."
+              : "O prazo terminou. Gere um novo PIX para continuar sua compra com segurança."}
           </p>
         </div>
 
         <Button onClick={retryCheckout} size="lg" className="w-full h-14 text-lg mt-4">
           <RefreshCw className="mr-2 w-5 h-5" />
-          Gerar novo código e retomar minha jornada
+          {isError ? "Gerar novo PIX com segurança" : "Gerar novo código e retomar minha jornada"}
         </Button>
       </div>
     );

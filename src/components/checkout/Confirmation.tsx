@@ -50,7 +50,7 @@ export function Confirmation({
           sizes="(max-width: 768px) 100vw, 448px"
           style={{ width: "100%", height: "auto" }}
           className="mx-auto max-w-full rounded-2xl"
-          quality={72}
+          quality={75}
         />
       </div>
       <div className="w-20 h-20 bg-[var(--color-primary-highlight)] rounded-full flex items-center justify-center mx-auto shadow-inner border border-[var(--color-border)]">

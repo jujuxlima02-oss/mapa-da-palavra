@@ -37,7 +37,7 @@ export function Problem({ label, texts, ctaText, offerSource, image }: ProblemPr
                 height={image.height}
                 loading="lazy"
                 className="object-contain sm:object-cover w-full h-auto sm:h-full"
-                quality={72}
+                quality={75}
               />
             </div>
           )}

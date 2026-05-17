@@ -10,18 +10,18 @@ import { CampaignCheckoutLink } from "@/components/landing/CampaignCheckoutLink"
 import { DIGITAL_GIFTS, PRODUCT, SHIPPING } from "@/lib/constants";
 import { featureFlags } from "@/lib/featureFlags";
 
-const productName = PRODUCT.name.replace(/\s-\s/g, " — ");
+const productName = PRODUCT.name;
 const productShortName = "Mapa da Palavra";
 
 export const metadata: Metadata = {
-  title: `${productName} | Sua jornada com a Palavra começa aqui`,
-  description: `Organize sua leitura bíblica, aprofunde sua fé e registre o que Deus está falando com você. Garanta o ${productName} por ${PRODUCT.priceFormatted}.`,
+  title: `${productName} | Guia físico para sua leitura bíblica`,
+  description: `Guie sua leitura bíblica, registre suas reflexões e construa uma rotina devocional com o ${productName}. De ${PRODUCT.originalPriceFormatted} por ${PRODUCT.priceFormatted}.`,
   alternates: {
     canonical: "https://mapadapalavra.online",
   },
   openGraph: {
-    title: `${productName} | Sua jornada com a Palavra começa aqui`,
-    description: `Organize sua leitura bíblica, aprofunde sua fé e registre o que Deus está falando com você. Garanta o ${productName} por ${PRODUCT.priceFormatted}.`,
+    title: `${productName} | Guia físico para sua leitura bíblica`,
+    description: `Guie sua leitura bíblica, registre suas reflexões e construa uma rotina devocional com o ${productName}. De ${PRODUCT.originalPriceFormatted} por ${PRODUCT.priceFormatted}.`,
     url: "https://mapadapalavra.online",
     siteName: productName,
     images: [
@@ -76,8 +76,8 @@ export default function EvergreenPage() {
         )}
 
       <UrgencyBar
-        text={`Hoje você pode começar sua jornada com a Palavra: ${productShortName} de ${PRODUCT.originalPriceFormatted} por ${PRODUCT.priceFormatted}.`}
-        ctaText="Quero começar hoje"
+        text={`Hoje você pode começar com direção: ${productShortName} de ${PRODUCT.originalPriceFormatted} por ${PRODUCT.priceFormatted}.`}
+        ctaText="Quero meu Mapa da Palavra"
         offerSource={offerSource}
       />
 
@@ -89,20 +89,20 @@ export default function EvergreenPage() {
               Salmos 119:105
             </p>
             <h1 className="text-4xl font-extrabold tracking-tight text-[var(--color-dark-text)] sm:text-5xl lg:text-6xl">
-              Você não está perdido por falta de fé. Você está tentando caminhar sem mapa.
+              Você não está perdido por falta de fé. Você precisa de um mapa para guiar sua leitura bíblica.
             </h1>
             <div className="mt-6 space-y-4 text-lg leading-8 text-[var(--color-dark-text)]/80">
               <p>
-                O {productShortName} foi criado para colocar um caminho claro nas suas mãos. Cada página organiza sua leitura, orienta sua reflexão e abre espaço para você registrar o que Deus está tratando no seu coração.
+                O {productShortName} é um guia físico para organizar sua leitura, orientar sua reflexão e abrir espaço para registrar o que Deus está tratando no seu coração.
               </p>
               <p>
-                Não é uma experiência solta. É encontro com Deus com mapa, caneta, Palavra e decisão.
+                É uma forma simples de transformar intenção em rotina: Bíblia aberta, mapa nas mãos, caneta, oração e constância.
               </p>
             </div>
             <div className="mt-8 space-y-5">
               <PriceLine inverse />
               <CheckoutLink variant="light">
-                {`Quero receber o ${productName}`}
+                Quero meu Mapa da Palavra
               </CheckoutLink>
             </div>
           </div>
@@ -115,7 +115,7 @@ export default function EvergreenPage() {
                 height={576}
                 sizes="(max-width: 1024px) 100vw, 1024px"
                 className="h-auto w-full object-contain"
-                quality={72}
+                quality={75}
                 priority
               />
               <div className="absolute inset-0 rounded-xl ring-1 ring-inset ring-[var(--color-border)]/30" />
@@ -184,7 +184,7 @@ export default function EvergreenPage() {
           <div className="mt-12 text-center">
             <PriceLine />
             <div className="mt-5">
-              <CheckoutLink>Quero escrever minha nova rotina com a Palavra</CheckoutLink>
+              <CheckoutLink>Quero começar com o Mapa da Palavra</CheckoutLink>
             </div>
           </div>
         </div>
@@ -193,7 +193,6 @@ export default function EvergreenPage() {
       <SocialProof
         label="Testemunhos"
         template={`Pessoas reais avaliando sua jornada com ${productShortName}.`}
-        ratingLabel="4,8/5 em 972 avaliações"
       />
 
       <section className="bg-[var(--color-bg)] py-24">
@@ -239,7 +238,7 @@ export default function EvergreenPage() {
             <div className="mt-10 text-center">
               <PriceLine />
               <div className="mt-5">
-                <CheckoutLink>Garantir meu Diário por R$ 49,90</CheckoutLink>
+                <CheckoutLink>{`Garantir meu Mapa da Palavra por ${PRODUCT.priceFormatted}`}</CheckoutLink>
               </div>
             </div>
           </div>
@@ -264,7 +263,7 @@ export default function EvergreenPage() {
           </div>
           <div className="mt-10 space-y-5">
             <PriceLine inverse />
-            <CheckoutLink variant="light">Não entrego mais um mês à Bíblia fechada</CheckoutLink>
+            <CheckoutLink variant="light">Começar minha jornada com o Mapa da Palavra</CheckoutLink>
           </div>
         </div>
       </section>
@@ -278,7 +277,7 @@ export default function EvergreenPage() {
       <FAQ
         label="Perguntas frequentes"
         questions={[
-          { question: "O que é o diário?", answer: `O ${productShortName} é um diário devocional bíblico estruturado para organizar leitura, reflexão e registro pessoal.` },
+          { question: "O que é o Mapa da Palavra?", answer: `O ${productShortName} é um guia físico para organizar leitura bíblica, reflexão e registro pessoal.` },
           { question: "Recebo brindes digitais?", answer: "Sim. Os brindes digitais são liberados imediatamente após a confirmação do pagamento." },
           { question: "Preciso já conhecer bem a Bíblia?", answer: "Não. O material foi pensado para quem quer começar com direção e constância." },
           { question: "O produto principal é físico?", answer: "Sim. Você recebe o produto principal no endereço informado no checkout." },

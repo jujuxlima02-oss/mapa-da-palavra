@@ -15,7 +15,7 @@ export function CheckoutClient({ offerSource }: CheckoutClientProps) {
   return (
     <>
       <div className="bg-[var(--color-surface)] border-b border-[var(--color-divider)] px-8 py-5">
-        <OrderSummary offerSource={offerSource} shippingMode={shippingMode} />
+        <OrderSummary shippingMode={shippingMode} />
       </div>
       <div className="px-8 py-6 pb-8">
         <CheckoutForm

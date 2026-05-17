@@ -44,3 +44,38 @@ next-env.d.ts
 Mapa da Palavra/
 dev-server.*.log
 .vercel
+
+# Codex / agent workspace
+.codex/
+kaligos.toml
+AGENTS.md
+CLAUDE.md
+
+# Operational docs and task artifacts
+TASKS.md
+progress.md
+docs/tasks/
+docs/specs/
+docs/qa/
+tasks/
+fluxos_n8n/
+
+# Automation / n8n / support scripts
+scripts/
+*_executor_placeholder.ps1
+dev-webhook-test.log
+codex-fase-*.md
+goal *.txt
+Documentação Atualizada GestãoPay.md
+Plano Estratégico — Nova Oferta Saints Label Bible Study Guide.md
+plugins/
+
+# Non-production visual assets
+public/generated/
+public/assets/colar_coracao_jesus*
+public/reviews/depo_whats[0-9][0-9].png
+public/reviews/depo[0-9][0-9].*
+public/reviews/foto_*.jpg
+
+# Keep safe review prints versionable
+!public/reviews/depo_whats[0-9][0-9]_safe.png
