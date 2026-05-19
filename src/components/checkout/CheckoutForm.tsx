@@ -525,7 +525,7 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
 
       <Button 
         type="submit" 
-        className="w-full mt-6 bg-[#16a34a] hover:bg-green-700 text-white font-bold text-[16px] uppercase tracking-[0.5px] h-[52px] rounded-md transition-all shadow-none"
+        className="mt-6 flex h-auto min-h-[56px] w-full flex-col gap-0.5 whitespace-normal rounded-md bg-[#16a34a] px-4 py-3 text-center text-[15px] font-bold uppercase leading-tight tracking-[0.04em] text-white shadow-none transition-all hover:bg-green-700 sm:min-h-[52px] sm:flex-row sm:gap-2 sm:text-[16px]"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
@@ -537,7 +537,12 @@ export function CheckoutForm({ offerSource, shippingMode, onShippingModeChange }
             Processando...
           </span>
         ) : (
-          `Garantir meu Mapa da Palavra por ${formatCentsToBRL(totalCents)}`
+          <>
+            <span>Finalizar</span>
+            <span className="text-[13px] font-semibold normal-case tracking-normal sm:text-[15px]">
+              por {formatCentsToBRL(totalCents)}
+            </span>
+          </>
         )}
       </Button>
 

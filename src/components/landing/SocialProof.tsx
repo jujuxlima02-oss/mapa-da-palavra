@@ -65,7 +65,7 @@ export function SocialProof({ label, template }: SocialProofProps) {
           {label}
         </p>
         <h2 className="text-2xl font-black tracking-tight text-[var(--color-text)] sm:text-3xl">
-          Prints reais de clientes
+          Prints reais de quem viveu essa jornada
         </h2>
         <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-[var(--color-text-muted)]">
           {template}

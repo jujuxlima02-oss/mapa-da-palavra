@@ -15,24 +15,24 @@
 
 ## 2. Objetivo do MVP
 
-Validar a venda direta de um produto físico cristão com duas abordagens de copy, medindo conversão do clique até a confirmação de pagamento.
+Validar a venda direta de um produto físico cristão com a oferta evergreen, medindo conversão do clique até a confirmação de pagamento.
 
 ## 3. Escopo funcional atual
 
 ### Landing pages
 
 - Rota evergreen em `/`
-- Rota sazonal em `/dia-das-maes`
-- CTA para o mesmo checkout, diferenciando a origem por `offer`
+- Rota sazonal `/dia-das-maes` encerrada e redirecionada para `/`
+- CTA para checkout evergreen
 - Seções implementadas com hero, prova social, problema, mecanismo, benefícios, preço, garantia, FAQ e CTA final
 - Prova social dinâmica local disponível por feature flag
 
 ### Checkout
 
-- Rota: `/checkout?offer={evergreen|dia-das-maes}`
+- Rota: `/checkout?offer=evergreen`
 - Coleta: nome, e-mail, telefone, CPF, CEP, rua, número, complemento, cidade e estado
 - Busca de CEP via ViaCEP
-- Campo de cupom apenas visual
+- Sem campo de cupom ativo
 - Sem login
 - Sem carrinho
 
@@ -48,7 +48,7 @@ Validar a venda direta de um produto físico cristão com duas abordagens de cop
 
 - Rota: `/checkout/confirmacao/[orderId]`
 - Mostra resumo do pedido pago
-- Exibe valor, data e brinde físico
+- Exibe valor, data e brindes digitais
 
 ### Backend
 
@@ -61,15 +61,15 @@ Validar a venda direta de um produto físico cristão com duas abordagens de cop
 ### Produto e preço
 
 - Produto principal: `Mapa da Palavra`
-- Preço atual: `R$ 39,90`
+- Preço atual: de `R$ 89,90` por `R$ 49,90`
 - Moeda: `BRL`
 - Tipo: produto físico
-- Brinde físico implementado: `Colar com coração escrito Jesus`
+- Brindes digitais: `66 Cards Mapa da Palavra`, `Diário de Fé Mapa da Palavra` e `Guia de Estudo em 30 Dias`
 
 ### Oferta
 
-- `offer_source` aceito: `evergreen` ou `dia-das-maes`
-- A oferta sazonal redireciona para `/` após `SEASONAL_CAMPAIGN_END_DATE`
+- `offer_source` aceito: `evergreen`
+- A oferta sazonal `/dia-das-maes` está encerrada e não deve ser exposta como oferta ativa
 
 ### Pedido
 
@@ -100,13 +100,12 @@ Validar a venda direta de um produto físico cristão com duas abordagens de cop
 - Múltiplos produtos
 - Automação de frete
 - Cálculo real de prazo de entrega
-- Cupons funcionais
+- Cupons
 - E-mail transacional
 
 ## 7. Lacunas conhecidas entre promessa e implementação
 
-1. O naming ainda está misto entre `Mapa da Palavra` e `Diário Bíblico - Mapa da Palavra`
-2. A copy da landing sazonal promete bônus digital, mas o sistema só evidencia o brinde físico
-3. O campo de CEP na landing/preço não calcula frete de verdade
-4. A FAQ ainda expõe placeholders de prazo
-5. Links institucionais mencionados na UI ainda não possuem páginas implementadas
+1. Prints reais de WhatsApp ainda precisam substituir os placeholders da prova social
+2. O campo de CEP no checkout preenche endereço, mas não calcula frete de verdade
+3. A rota sazonal permanece redirecionada enquanto a campanha estiver encerrada
+4. Links institucionais mencionados na UI precisam permanecer sincronizados com as páginas existentes

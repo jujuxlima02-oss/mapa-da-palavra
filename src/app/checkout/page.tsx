@@ -33,12 +33,6 @@ export default async function CheckoutPage({
         
         {/* Header Compacto */}
         <div className="flex flex-col items-center justify-center mb-6">
-          <a
-            href="#checkout-form"
-            className="mb-4 inline-flex min-h-11 w-full items-center justify-center rounded-lg bg-[#16a34a] px-5 py-3 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-green-700 sm:hidden"
-          >
-            Ir para pagamento
-          </a>
           <div className="mb-5 w-full overflow-hidden rounded-xl border border-[var(--color-border)] shadow-sm">
             <Image
               src="/assets/banner-checkout.webp"

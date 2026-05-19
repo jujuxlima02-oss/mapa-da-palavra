@@ -5,7 +5,7 @@
 
 ## Visão geral
 
-`Mapa da Palavra` é a oferta principal deste projeto: um guia visual físico com 66 páginas, uma para cada livro da Bíblia, vendido por meio de landing pages próprias e checkout com PIX.
+`Mapa da Palavra` é a oferta principal deste projeto: um guia visual físico com 66 páginas, uma para cada livro da Bíblia, vendido por meio da landing evergreen e checkout com PIX.
 
 ## Naming canônico
 
@@ -30,8 +30,7 @@
 ## Escopo implementado
 
 - Landing evergreen em `/`
-- Landing sazonal em `/dia-das-maes`
-- Redirecionamento da campanha sazonal via `src/proxy.ts`
+- Rota sazonal `/dia-das-maes` encerrada e redirecionada para `/`
 - Checkout com nome, e-mail, telefone, CPF e endereço completo
 - Busca de CEP no checkout
 - Criação de cobrança PIX
@@ -57,7 +56,7 @@
 | Rota | Papel |
 | --- | --- |
 | `/` | Landing principal |
-| `/dia-das-maes` | Landing sazonal |
+| `/dia-das-maes` | Sazonal encerrada; redireciona para `/` |
 | `/checkout` | Página server-side com formulário client-side |
 | `/checkout/pix/[orderId]` | Instruções de pagamento |
 | `/checkout/confirmacao/[orderId]` | Pós-pagamento |
@@ -90,13 +89,11 @@
 1. Manter `GestãoPay` como gateway principal
 2. Manter `PIX` como único meio de pagamento implementado
 3. Manter `Prisma + PostgreSQL` na persistência
-4. Manter o uso de `src/proxy.ts` para a campanha sazonal no Next 16
+4. Manter `src/proxy.ts` para redirecionar a sazonal encerrada no Next 16
 5. Não introduzir autenticação ou múltiplos produtos sem decisão explícita
 
 ## Gaps conhecidos
 
-- Nome público ainda inconsistente entre docs, metadata e copy
-- Copy implementada não segue integralmente o plano estratégico
-- Links institucionais do footer e da garantia ainda não possuem páginas reais
-- Prazo de entrega continua em placeholder na FAQ
-- O app sazonal promete bônus digital, mas o fluxo transacional não o sustenta tecnicamente
+- Prints reais de WhatsApp ainda precisam substituir os placeholders da prova social
+- A rota sazonal permanece redirecionada enquanto a campanha estiver encerrada
+- Prazo de entrega segue fixo por modalidade, sem cálculo real de frete

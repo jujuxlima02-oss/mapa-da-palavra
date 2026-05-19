@@ -32,7 +32,7 @@ Landing -> Checkout -> API de checkout -> GestãoPay -> Tela PIX
 | Rota | Tipo | Observação |
 | --- | --- | --- |
 | `/` | `page.tsx` | Landing evergreen |
-| `/dia-das-maes` | `page.tsx` | Landing sazonal |
+| `/dia-das-maes` | `page.tsx` | Sazonal encerrada; redireciona para `/` |
 | `/checkout` | `page.tsx` | Página server-side com formulário client-side |
 | `/checkout/pix/[orderId]` | `page.tsx` | Tela de pagamento |
 | `/checkout/confirmacao/[orderId]` | `page.tsx` | Pós-pagamento |
@@ -112,7 +112,6 @@ src/
 
 ## 9. Gaps técnicos atuais
 
-1. Naming público ainda inconsistente em metadata e copy
-2. Links institucionais da interface apontam para páginas que ainda não existem
-3. A copy sazonal promete Colar Coração de Jesus sem suporte transacional correspondente
-4. O prazo de entrega continua sem integração operacional real
+1. Prints reais de WhatsApp ainda precisam substituir os placeholders da prova social
+2. A rota sazonal permanece redirecionada enquanto a campanha estiver encerrada
+3. O prazo de entrega continua sem integração operacional real

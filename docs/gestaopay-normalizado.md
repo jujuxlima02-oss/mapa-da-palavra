@@ -40,7 +40,7 @@ https://api.gestaopayments.com
 
 ```json
 {
-  "amount": 3990,
+  "amount": 4990,
   "payment_method": "pix",
   "postback_url": "https://seu-dominio/api/webhooks/gestaopay",
   "customer": {
@@ -55,7 +55,7 @@ https://api.gestaopayments.com
   "items": [
     {
       "title": "Mapa da Palavra",
-      "unit_price": 3990,
+      "unit_price": 4990,
       "quantity": 1,
       "tangible": true,
       "external_ref": "order-id"
