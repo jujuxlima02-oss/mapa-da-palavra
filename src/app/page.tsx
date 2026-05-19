@@ -98,8 +98,6 @@ export default function EvergreenPage() {
 
       <UrgencyBar
         text={`Hoje você pode começar com direção: ${productShortName} de ${PRODUCT.originalPriceFormatted} por ${PRODUCT.priceFormatted}.`}
-        ctaText="Quero meu Mapa da Palavra"
-        offerSource={offerSource}
       />
 
       <section className="relative overflow-hidden bg-[var(--color-dark-section)] pt-16 pb-20 lg:pt-24 lg:pb-28">
