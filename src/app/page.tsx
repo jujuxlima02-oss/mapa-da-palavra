@@ -13,18 +13,24 @@ import { featureFlags } from "@/lib/featureFlags";
 
 const productName = PRODUCT.name;
 const productShortName = "Mapa da Palavra";
-const giftImages: Record<string, { src: string; alt: string }> = {
+const giftImages: Record<string, { src: string; alt: string; width: number; height: number }> = {
   "66 Cards Mapa da Palavra": {
-    src: "/assets/imagem_mapa_palavra1.webp",
-    alt: "Material de apoio com cards do Mapa da Palavra para acompanhar a leitura bíblica",
+    src: "/assets/brinde-66-cards.png",
+    alt: "66 Cards Bíblicos - um card por livro da Bíblia",
+    width: 1920,
+    height: 1080,
   },
   "Diário de Fé Mapa da Palavra": {
-    src: "/assets/imagem_mapa_palavra2.webp",
-    alt: "Material de apoio Diário de Fé Mapa da Palavra para registros devocionais",
+    src: "/assets/brinde-diario-de-fe.png",
+    alt: "Diário de Fé Mapa da Palavra - folha devocional para registro diário",
+    width: 300,
+    height: 300,
   },
   "Guia de Estudo em 30 Dias": {
-    src: "/assets/imagem_mapa_palavra5.webp",
-    alt: "Material de apoio Guia de Estudo em 30 Dias para rotina de leitura bíblica",
+    src: "/assets/brinde-guia-30-dias.png",
+    alt: "Guia de Estudo em 30 Dias Mapa da Palavra em dispositivos digitais",
+    width: 300,
+    height: 300,
   },
 };
 
@@ -173,17 +179,32 @@ export default function EvergreenPage() {
             <h2 className="text-3xl font-black tracking-tight text-[var(--color-text)] sm:text-4xl">
               Como funciona
             </h2>
-            <div className="mx-auto mt-8 flex max-w-2xl flex-col items-center gap-5 text-center text-lg leading-8 text-[var(--color-text-muted)]">
-              <p className="max-w-xl">
-                1. Abra o guia e siga a proposta do momento devocional.
-              </p>
-              <p className="max-w-xl">
-                2. Leia, ore e registre aquilo que mais falou com você.
-              </p>
-              <p className="max-w-xl">
-                3. Retorne no dia seguinte e continue sua jornada com mais clareza e direção.
-              </p>
-            </div>
+            <ol className="mx-auto mt-8 flex max-w-2xl flex-col gap-5 text-left text-lg leading-8 text-[var(--color-text-muted)]">
+              <li className="grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-3">
+                <span className="pt-px font-semibold tabular-nums text-[var(--color-text)]">
+                  1.
+                </span>
+                <span className="min-w-0">
+                  Abra o guia e siga a proposta do momento devocional.
+                </span>
+              </li>
+              <li className="grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-3">
+                <span className="pt-px font-semibold tabular-nums text-[var(--color-text)]">
+                  2.
+                </span>
+                <span className="min-w-0">
+                  Leia, ore e registre aquilo que mais falou com você.
+                </span>
+              </li>
+              <li className="grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-3">
+                <span className="pt-px font-semibold tabular-nums text-[var(--color-text)]">
+                  3.
+                </span>
+                <span className="min-w-0">
+                  Retorne no dia seguinte e continue sua jornada com mais clareza e direção.
+                </span>
+              </li>
+            </ol>
           </div>
 
           <ProductCarousel />
@@ -214,19 +235,17 @@ export default function EvergreenPage() {
                       <Image
                         src={giftImage.src}
                         alt={giftImage.alt}
-                        width={700}
-                        height={525}
+                        width={giftImage.width}
+                        height={giftImage.height}
                         sizes="(max-width: 768px) 100vw, 33vw"
-                        className="h-full w-full object-cover"
+                        className="h-full w-full object-contain p-4"
+                        loading="lazy"
                         quality={75}
                       />
                     </div>
                   )}
                   <div className="p-6">
-                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-[var(--color-accent)]">
-                      Incluso no seu pedido
-                    </p>
-                    <h3 className="mt-3 text-xl font-black text-[var(--color-text)]">
+                    <h3 className="text-xl font-black text-[var(--color-text)]">
                       {gift.name}
                     </h3>
                     <p className="mt-4 text-base leading-7 text-[var(--color-text-muted)]">
