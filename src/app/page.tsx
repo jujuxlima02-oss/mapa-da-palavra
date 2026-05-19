@@ -297,7 +297,7 @@ export default function EvergreenPage() {
                 <li className="flex gap-3">
                   <span className="font-black text-[var(--color-success)]">✓</span>
                   <span>
-                    <strong className="text-[var(--color-text)]">{productName}</strong>: produto principal para organizar sua jornada diária pela Palavra.
+                    <strong className="text-[var(--color-text)]">{productName}</strong>: um guia para orientar sua leitura, sua oração e seus registros devocionais com constância.
                   </span>
                 </li>
                 <li className="flex gap-3">
